@@ -39,15 +39,25 @@ class DBActions implements DBActionsInterface
 		return $row;
 	}
 
+	public function setOnline($email)
+	{
+		$statement = $this->conn->query("update members set online='1' where email='$email'");
+	}
+
+	public function setOffline($email)
+	{
+		$statement = $this->conn->query("update members set online='0' where email='$email'");
+	}
+
 	public function updateProfile()
 	{
 
 	}
 
-	public function insertUser($name, $password)
+	public function insertUser($name, $password, $email)
 	{
 		try {
-		$result = $this->conn->exec("insert into members (firstName, password) value ('$name', '$password')");
+		$result = $this->conn->exec("insert into members (firstName, password, email) value ('$name', '$password', '$email')");
 	} catch (PDOException $e) {
 		echo $e->getMessage();
 	}

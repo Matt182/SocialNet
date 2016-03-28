@@ -5,7 +5,7 @@ session_start();
 if (isset($_SESSION['user'])) {
 	$user = $_SESSION['user'];
 } else {
-	header('Location:index.php');
+	header('Location:index.php?msg=You need to authorize');
 }
 ?>
 <!DOCTYPE html>

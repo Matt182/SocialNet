@@ -7,13 +7,17 @@ class User
 	private $firstName;
 	private $email;
 	private $password;
+	private $resume;
 	private $online;
 
-	public function __construct($id, $firstName, $password)
+	public function __construct($id, $firstName, $email, $password, $resume)
 	{
 		$this->id = $id;
 		$this->firstName = $firstName;
+		$this->email = $email;
 		$this->password = $password;
+		$this->resume = $resume;
+		$this->online = 1;
 	}
 
 	public function getId()

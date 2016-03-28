@@ -7,7 +7,10 @@ interface DBActionsInterface
 	public function getByFirstName($firstName);
 	public function getByEmail($email);
 
+	public function setOnline($email);
+	public function setOffline($email);
+
 	public function updateProfile();
-	public function insertUser($name, $password);
+	public function insertUser($name, $password, $email);
 	
 }
