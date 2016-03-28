@@ -8,9 +8,11 @@ require_once '../../models/User.php';
 require_once '../../config/config.php';
 require_once '../DBActions.php';
 
+
+
 $msg = "";
 if(isset($_POST['email']) && $_POST['email'] != "") {
-	$db = new DBActions($dbdriver, $dbhost, $dbname, $dbusername, $dbpassword);
+	$db = new DBActions();
 	$email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
 	$password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 
@@ -18,10 +20,10 @@ if(isset($_POST['email']) && $_POST['email'] != "") {
 
 	if(password_verify($password, $row['password'])) {
 		session_start();
-		$user = new User($row['id'], $row['firstName'],$row['email'], $row['password'], $row['resume']);
-		$_SESSION['user'] = $user;
 		$db->setOnline($email);
-		header('Location:/hive2/src/views/profile.php');
+		$user = new User($row['id'], $row['firstName'],$row['email'], $row['password'], $row['resume'], $row['online']);
+		$_SESSION['user'] = $user;
+		header("Location:/hive2/src/views/profile.php?user={$row['firstName']}");
 	} else {
 		$msg = "Wrong password or login";
 		header("Location:/hive2/src/views/index.php?msg=$msg");

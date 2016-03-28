@@ -1,5 +1,9 @@
 <?php
 require_once '../models/User.php';
+require_once '../controll/DBActions.php';
+require_once '../config/config.php';
+use hive2\controll\DBActions;
+use hive2\models\User;
 session_start();
 
 if (isset($_SESSION['user'])) {
@@ -7,14 +11,43 @@ if (isset($_SESSION['user'])) {
 } else {
 	header('Location:index.php?msg=You need to authorize');
 }
+
+$person = filter_input(INPUT_GET, 'user', FILTER_SANITIZE_STRING);
+
+if ($person == $user->getFirstName() || $person == "") {
+	$guest = false;
+} else {
+	$guest = true;
+}
+if($guest) {
+	$db = new DBActions();
+	$row = $db->getByFirstName($person);
+	$user = new User($row['id'], $row['firstName'],$row['email'], $row['password'], $row['resume']);
+}
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Profile</title>
+	<title>Profile <?=$user->getFirstName()?></title>
 </head>
 <body>
-<?= $user->getFirstName() ?>
-<a href="/hive2/src/controll/logout.php">Log Out</a>
+	<ul>
+		<li><a href="profile.php">Hive2</a></li>
+		<li><a href="#">Friends</a></li>
+		<li><a href="#">Members</a></li>
+		<li><a href="/hive2/src/controll/logout.php">Log Out</a></li>
+	</ul>
+	<div>Picture</div>
+	<div><?=$user->getFirstName()?></div>
+	<div>
+		<?php
+			if ($user->isOnline()) {
+				echo "online";
+			} else {
+				echo "offline";
+			}
+		?>
+	</div>
 </body>
 </html>

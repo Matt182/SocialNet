@@ -10,8 +10,9 @@ class DBActions implements DBActionsInterface
 {
 	private $conn = null;
 	
-	function __construct($dbdriver, $dbhost, $dbname, $dbusername, $dbpassword)
+	function __construct()
 	{
+		global $dbdriver, $dbhost, $dbname, $dbusername, $dbpassword;
 		try{
 			$this->conn = new PDO("$dbdriver:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
 		} catch(PDOException $e) {
@@ -36,6 +37,7 @@ class DBActions implements DBActionsInterface
 	{
 		$statement = $this->conn->query("select * from members where email='$email'");
 		$row = $statement->fetch(PDO::FETCH_ASSOC);
+
 		return $row;
 	}
 

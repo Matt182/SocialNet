@@ -10,14 +10,14 @@ class User
 	private $resume;
 	private $online;
 
-	public function __construct($id, $firstName, $email, $password, $resume)
+	public function __construct($id, $firstName, $email, $password, $resume, $online)
 	{
 		$this->id = $id;
 		$this->firstName = $firstName;
 		$this->email = $email;
 		$this->password = $password;
 		$this->resume = $resume;
-		$this->online = 1;
+		$this->online = $online;
 	}
 
 	public function getId()
