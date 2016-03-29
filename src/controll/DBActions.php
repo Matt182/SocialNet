@@ -9,7 +9,7 @@ require_once 'DBActionsInterface.php';
 
 class DBActions implements DBActionsInterface
 {
-	private $conn = null;
+	private $conn;
 	
 	function __construct()
 	{

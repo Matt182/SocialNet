@@ -14,8 +14,9 @@ if (isset($_SESSION['user'])) {
 	if (isset($_GET['msg'])) {
 		echo $_GET['msg'];
 	}
+	echo $_SERVER["DOCUMENT_ROOT"];
 	?></p>
-	<form method="post" action="/hive2/src/controll/login/checkUser.php">
+	<form method="post" action="/hive2/src/controll/login/LoginControllerAdapter.php">
 		<label for="email">Email</label>
 		<input type="email" name="email">
 		<label for="password">Password</label>
