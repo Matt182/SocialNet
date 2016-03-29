@@ -4,6 +4,13 @@
 	<title>register</title>
 </head>
 <body>
+	<p>
+		<?php
+			if (isset($_GET['msg'])) {
+				echo $_GET['msg'];
+			}
+		?>
+	</p>
 	<form method="post" action="/hive2/src/controll/login/registerController.php">
 		Name<input type="text" name="firstName">
 		Email<input type="email" name="email">

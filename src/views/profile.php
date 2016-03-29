@@ -1,9 +1,10 @@
 <?php
-require_once '../models/User.php';
-require_once '../controll/DBActions.php';
-require_once '../config/config.php';
-use hive2\controll\DBActions;
 use hive2\models\User;
+use hive2\controll\DBActions;
+
+require_once '../../vendor/autoload.php';
+require_once '../config/config.php';
+
 session_start();
 
 if (isset($_SESSION['user'])) {
@@ -14,14 +15,14 @@ if (isset($_SESSION['user'])) {
 
 $person = filter_input(INPUT_GET, 'user', FILTER_SANITIZE_STRING);
 
-if ($person == $user->getFirstName() || $person == "") {
+if ($person == $user->getId() || $person == "") {
 	$guest = false;
 } else {
 	$guest = true;
 }
 if($guest) {
 	$db = new DBActions();
-	$row = $db->getByFirstName($person);
+	$row = $db->getById($person);
 	$user = new User($row['id'], $row['firstName'],$row['email'], $row['password'], $row['resume']);
 }
 ?>

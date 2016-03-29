@@ -4,11 +4,8 @@ namespace hive2\controll;
 use hive2\models\User;
 use hive2\controll\DBActions;
 
-require_once '../../models/User.php';
+require_once '../../../vendor/autoload.php';
 require_once '../../config/config.php';
-require_once '../DBActions.php';
-
-
 
 $msg = "";
 if(isset($_POST['email']) && $_POST['email'] != "") {
@@ -21,9 +18,10 @@ if(isset($_POST['email']) && $_POST['email'] != "") {
 	if(password_verify($password, $row['password'])) {
 		session_start();
 		$db->setOnline($email);
+		$row = $db->getByEmail($email);
 		$user = new User($row['id'], $row['firstName'],$row['email'], $row['password'], $row['resume'], $row['online']);
 		$_SESSION['user'] = $user;
-		header("Location:/hive2/src/views/profile.php?user={$row['firstName']}");
+		header("Location:/hive2/src/views/profile.php?user={$row['id']}");
 	} else {
 		$msg = "Wrong password or login";
 		header("Location:/hive2/src/views/index.php?msg=$msg");

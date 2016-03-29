@@ -3,6 +3,7 @@ namespace hive2\controll;
 
 use hive2\controll\DBActionsInterface;
 use PDO;
+use hive2\config\Config;
 
 require_once 'DBActionsInterface.php';
 
@@ -12,7 +13,11 @@ class DBActions implements DBActionsInterface
 	
 	function __construct()
 	{
-		global $dbdriver, $dbhost, $dbname, $dbusername, $dbpassword;
+		$dbdriver = Config::getDBDriver();
+		$dbhost = Config::getDBHost(); 
+		$dbname = Config::getDBName(); 
+		$dbusername = Config::getDBUsername();
+		$dbpassword = Config::getDBPass();
 		try{
 			$this->conn = new PDO("$dbdriver:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
 		} catch(PDOException $e) {
@@ -59,9 +64,10 @@ class DBActions implements DBActionsInterface
 	public function insertUser($name, $password, $email)
 	{
 		try {
-		$result = $this->conn->exec("insert into members (firstName, password, email) value ('$name', '$password', '$email')");
-	} catch (PDOException $e) {
-		echo $e->getMessage();
-	}
+			$result = $this->conn->exec("insert into members (firstName, password, email) value ('$name', '$password', '$email')");
+		} catch (PDOException $e) {
+			echo $e->getMessage();
+		}
+		return $result;
 	}
 }
