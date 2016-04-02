@@ -18,9 +18,10 @@ class ProfileController
     }
   }
 
-  public function ActionIndex($id)
+  public function ActionIndex()
   {
-    $view = new ProfileView($this->user);
+    $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
+    $view = new ProfileView();
     $view->render($id);
   }
 

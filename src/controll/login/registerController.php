@@ -4,7 +4,7 @@ namespace hive2\controll;
 use hive2\models\User;
 use hive2\controll\DBActions;
 
-require_once '../../../vendor/autoload.php';
+//require_once '../../../vendor/autoload.php';
 //require_once '../../config/config.php';
 
 if(isset($_POST['firstName'])) {
@@ -20,11 +20,11 @@ if(isset($_POST['firstName'])) {
 	if ($result == 0) {
 		$msg = "$email is already exists";
 		$conn=null;
-		header("Location:/hive2/src/views/register.php?msg=$msg");
+		header("Location:register?msg=$msg");
 	} else {
 		$msg = "regestration completed by $name";
 		$conn=null;
-		header("Location:/hive2/src/views/index.php?msg=$msg");
+		header("Location:login?msg=$msg");
 	}
-	
+
 }

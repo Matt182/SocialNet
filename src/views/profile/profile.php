@@ -5,8 +5,7 @@ use hive2\controll\DBActions;
 
 $user = $_SESSION['user'];
 
-/*
-$person = filter_input(INPUT_GET, 'user', FILTER_SANITIZE_STRING);
+$person = $id;
 
 if ($person == $user->getId() || $person == "") {
 	$guest = false;
@@ -16,8 +15,8 @@ if ($person == $user->getId() || $person == "") {
 if($guest) {
 	$db = new DBActions();
 	$row = $db->getById($person);
-	$user = new User($row['id'], $row['firstName'],$row['email'], $row['password'], $row['resume']);
-}*/
+	$user = new User($row['id'], $row['firstName'],$row['email'], "123", $row['resume'], $row['online']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -27,10 +26,10 @@ if($guest) {
 </head>
 <body>
 	<ul>
-		<li><a href="profile.php">Hive2</a></li>
+		<li><a href="profile">Hive2</a></li>
 		<li><a href="#">Friends</a></li>
 		<li><a href="#">Members</a></li>
-		<li><a href="logout">Log Out</a></li>
+		<li><a href="profile/logout">Log Out</a></li>
 	</ul>
 	<div>Picture</div>
 	<div><?=$user->getFirstName()?></div>

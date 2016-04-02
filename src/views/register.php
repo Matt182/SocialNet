@@ -11,7 +11,7 @@
 			}
 		?>
 	</p>
-	<form method="post" action="/hive2/src/controll/login/registerController.php">
+	<form method="post" action="registrate">
 		Name<input type="text" name="firstName">
 		Email<input type="email" name="email">
 		Password<input type="password" name="password">

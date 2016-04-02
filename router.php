@@ -14,6 +14,10 @@ switch ($url[0]) {
 		$controller = new NewLoginController();
 		$controller->ActionIndex('register');
 		break;
+	case 'registrate':
+		$controller = new NewLoginController();
+		$controller->ActionRegistrate();
+		break;
 	case 'authorize':
 		$controller = new NewLoginController();
 		$controller->ActionAuthorize();
@@ -23,13 +27,16 @@ switch ($url[0]) {
 		if (isset($url[1])) {
 			switch ($url[1]) {
 				case 'logout':
-					$controller = new ProfileController();
+
 					$controller->ActionLogout();
 					break;
 				default:
-					$controller->ActionIndex($url[1]);
+					//$controller->ActionIndex();
 					break;
 				}
+			} else {
+				$controller->ActionIndex();
+				break;
 			}
 		break;
 	default:

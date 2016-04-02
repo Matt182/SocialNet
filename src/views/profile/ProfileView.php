@@ -6,14 +6,14 @@ namespace hive2\views\profile;
  */
 class ProfileView
 {
-  private $user;
-  function __construct($user)
+  function __construct()
   {
-    $this->user = $user;
+
   }
 
   public function render($id)
   {
+    $id = $id;
     require_once("profile.php");
   }
 }
