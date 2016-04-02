@@ -1,8 +1,8 @@
 <?php
-session_start();
+/*session_start();
 if (isset($_SESSION['user'])) {
 	header('Location:profile.php');
-}
+}*/
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,7 +15,7 @@ if (isset($_SESSION['user'])) {
 		echo $_GET['msg'];
 	}
 	?></p>
-	<form method="post" action="/hive2/src/controll/login/LoginControllerAdapter.php">
+	<form method="post" action="authorize">
 		<label for="email">Email</label>
 		<input type="email" name="email">
 		<label for="password">Password</label>

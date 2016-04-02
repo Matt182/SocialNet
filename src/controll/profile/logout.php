@@ -3,11 +3,7 @@
 use hive2\controll\DBActions;
 use hive2\models\User;
 
-require_once '../models/User.php';
-require_once '../config/config.php';
-require_once 'DBActions.php';
 
-session_start();
 $user = $_SESSION['user'];
 $db = new DBActions($dbdriver, $dbhost, $dbname, $dbusername, $dbpassword);
 
@@ -21,5 +17,5 @@ if (session_id() != "" || isset($_COOKIE[session_name()]))
 
 session_destroy();
 
-header('Location:/hive2/src/views/index.php');
+header('Location:/hive2/login');
 ?>
