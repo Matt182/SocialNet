@@ -6,6 +6,7 @@ require_once 'vendor/autoload.php';
 
 $url = explode('/', $_GET['url']);
 switch ($url[0]) {
+	case '':
 	case 'login':
 		$controller = new NewLoginController();
 		$controller->ActionIndex('index');

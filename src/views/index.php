@@ -17,9 +17,9 @@ if (isset($_SESSION['user'])) {
 	?></p>
 	<form method="post" action="authorize">
 		<label for="email">Email</label>
-		<input type="email" name="email">
+		<input id="email" type="email" name="email">
 		<label for="password">Password</label>
-		<input type="password" name="password">
+		<input id="password" type="password" name="password">
 		<input type="submit" value="login">
 	</form>
 	<a href="register">Register</a>
