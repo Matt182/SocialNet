@@ -29,7 +29,7 @@ if($guest) {
 		<li><a href="profile">Hive2</a></li>
 		<li><a href="#">Friends</a></li>
 		<li><a href="#">Members</a></li>
-		<li><a href="profile/logout">Log Out</a></li>
+		<li><a href="profile/logout" id="logout">Log Out</a></li>
 	</ul>
 	<div>Picture</div>
 	<div><?=$user->getFirstName()?></div>

@@ -16,6 +16,10 @@ class NewLoginController
 
 	public function ActionIndex($name)
 	{
+		session_start();
+		if (isset($_SESSION['user'])) {
+			header("Location:profile");
+		}
 		$view = new IndexView();
 		$view->render($name);
 	}
@@ -26,10 +30,11 @@ class NewLoginController
 		$password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 
 		if(isset($email) && $email != "") {
-			$loginController = new LoginController($email, $password);
-			if($password != "" && $loginController->isUserRegistred()) {
+			$loginHelper = new LoginHelper($email, $password);
+			if($password != "" && $loginHelper->isUserRegistred()) {
 				session_start();
-				$user = $loginController->getUser();
+				$loginHelper->login();
+				$user = $loginHelper->getUser();
 				$_SESSION['user'] = $user;
 				header("Location:profile?id={$user->getId()}");
 			} else {

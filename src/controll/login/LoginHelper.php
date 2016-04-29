@@ -8,7 +8,7 @@ use hive2\controll\DBActions;
 require_once "{$_SERVER['DOCUMENT_ROOT']}/hive2/vendor/autoload.php";
 
 
-class LoginController implements LoginInterface
+class LoginHelper implements LoginInterface
 {
 	private $email;
 	private $password;
@@ -26,13 +26,18 @@ class LoginController implements LoginInterface
 	{
 		$row = $this->db->getByEmail($this->email);
 		if(password_verify($this->password, $row['password'])) {
-			$this->db->setOnline($this->email);
-			$row = $this->db->getByEmail($this->email);
-			$this->user = new User($row['id'], $row['firstName'],$row['email'], $row['password'], $row['resume'], $row['online']);
+
 			return true;
 		} else {
 			return false;
 		}
+	}
+
+	public function login()
+	{
+		$this->db->setOnline($this->email);
+		$row = $this->db->getByEmail($this->email);
+		$this->user = new User($row['id'], $row['firstName'],$row['email'], $row['password'], $row['resume'], $row['online']);
 	}
 
 	public function getUser()
