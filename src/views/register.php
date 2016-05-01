@@ -5,11 +5,9 @@
 </head>
 <body>
 	<p>
-		<?php
-			if (isset($_GET['msg'])) {
-				echo $_GET['msg'];
-			}
-		?>
+		<?php if (!empty($error)) : ?>
+			<p class="error"><?= $error?></p>
+		<?php endif ?>
 	</p>
 	<form method="post" action="registrate">
 		Name<input type="text" name="firstName">

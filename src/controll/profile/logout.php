@@ -3,7 +3,7 @@
 use hive2\controll\DBActions;
 use hive2\models\User;
 
-
+session_start();
 $user = $_SESSION['user'];
 $db = new DBActions($dbdriver, $dbhost, $dbname, $dbusername, $dbpassword);
 
