@@ -9,8 +9,9 @@ class User
 	private $password;
 	private $resume;
 	private $online;
+	private $friends;
 
-	public function __construct($id, $firstName, $email, $password, $resume, $online)
+	public function __construct($id, $firstName, $email, $password, $resume, $online, $friends)
 	{
 		$this->id = $id;
 		$this->firstName = $firstName;
@@ -18,6 +19,7 @@ class User
 		$this->password = $password;
 		$this->resume = $resume;
 		$this->online = $online;
+		$this->friends = $friends;
 	}
 
 	public function getId()
@@ -38,5 +40,9 @@ class User
 	public function isOnline()
 	{
 		return $this->online;
+	}
+	public function getfriends()
+	{
+		return $this->friends;
 	}
 }

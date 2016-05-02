@@ -37,7 +37,7 @@ class LoginHelper implements LoginInterface
 	{
 		$this->db->setOnline($this->email);
 		$row = $this->db->getByEmail($this->email);
-		$this->user = new User($row['id'], $row['firstName'],$row['email'], $row['password'], $row['resume'], $row['online']);
+		$this->user = new User($row['id'], $row['firstName'],$row['email'], $row['password'], $row['resume'], $row['online'], $row['friends']);
 	}
 
 	public function getUser()
@@ -46,27 +46,3 @@ class LoginHelper implements LoginInterface
 	}
 
 }
-/*
-if(isset($_POST['email']) && $_POST['email'] != "") {
-	$db = new DBActions();
-	$email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-	$password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
-
-	$row = $db->getByEmail($email);
-
-	if(password_verify($password, $row['password'])) {
-		session_start();
-		$db->setOnline($email);
-		$row = $db->getByEmail($email);
-		$user = new User($row['id'], $row['firstName'],$row['email'], $row['password'], $row['resume'], $row['online']);
-		$_SESSION['user'] = $user;
-		header("Location:/hive2/src/views/profile.php?user={$row['id']}");
-	} else {
-		$msg = "Wrong password or login";
-		header("Location:/hive2/src/views/index.php?msg=$msg");
-	}
-} else {
-	$msg = "Please enter data";
-	header("Location:/hive2/src/views/index.php?msg=$msg");
-}
-*/

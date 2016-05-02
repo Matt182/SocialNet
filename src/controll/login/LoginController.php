@@ -15,7 +15,7 @@ class LoginController
 		session_start();
 		if (isset($_SESSION['user'])) {
 			$user = $_SESSION['user'];
-			print($view->render('profile/profile',['user' => $user]));
+			header("Location:profile/{$user->getId()}");
 		}else {
 			print($view->render($name));
 		}
@@ -35,8 +35,7 @@ class LoginController
 				$user = $loginHelper->getUser();
 				print_r($user);
 				$_SESSION['user'] = $user;
-				header('Location:profile');
-				//print($view->render('profile/profile', ['user' => $user]));
+				header("Location:profile/{$user->getId()}");
 			} else {
 				$msg = "Wrong password or login";
 				print($view->render("index", ["error" => $msg]));

@@ -1,25 +1,7 @@
 <?php
 use hive2\models\User;
-use hive2\controll\DBActions;
 
-/*
-$user = $_SESSION['user'];
-
-$person = $id;
-
-if ($person == $user->getId() || $person == "") {
-	$guest = false;
-} else {
-	$guest = true;
-}
-if($guest) {
-	$db = new DBActions();
-	$row = $db->getById($person);
-	$user = new User($row['id'], $row['firstName'],$row['email'], "123", $row['resume'], $row['online']);
-}
-*/
-
-?>
+ ?>
 
 <!DOCTYPE html>
 <html>
@@ -28,13 +10,14 @@ if($guest) {
 </head>
 <body>
 	<ul>
-		<li><a href="profile">Hive2</a></li>
-		<li><a href="#">Friends</a></li>
-		<li><a href="#">Members</a></li>
-		<li><a href="logout">Log Out</a></li>
+		<li><a href="">Hive2</a></li>
+		<li><a href="<?=$user->getId() ?>/friends">Friends</a></li>
+		<li><a href="/hive2/members">Members</a></li>
+		<li><a id="logout" href="/hive2/logout">Log Out</a></li>
 	</ul>
 	<div>Picture</div>
 	<div><?=$user->getFirstName()?></div>
+	<div><?=$user->getEmail()?></div>
 	<div>
 		<?php
 			if ($user->isOnline()) {
@@ -43,6 +26,10 @@ if($guest) {
 				echo "offline";
 			}
 		?>
+		<hr>
+		<?php if ($guest) : ?>
+			<a href="<?=$user->getId()?>/addToFriends">Add to friends</a>
+		<?php endif ?>
 	</div>
 </body>
 </html>
