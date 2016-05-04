@@ -26,25 +26,29 @@ switch ($url[0]) {
 		break;
 	case 'profile':
 		$controller = new ProfileController();
-		if(isset($url[2])) {
-			switch ($url[2]) {
-				case 'addToFriends':
-					$controller->ActionAddFriend($url[1]);
-					break;
-				case 'friends':
-					$controller->ActionFriends($url[1]);
-					break;
-				default:
-					# code...
-					break;
+		if($controller->isLogin()) {
+			if(isset($url[2])) {
+				switch ($url[2]) {
+					case 'addToFriends':
+						$controller->ActionAddFriend($url[1]);
+						break;
+					case 'friends':
+						$controller->ActionFriends($url[1]);
+						break;
+					default:
+						# code...
+						break;
+				}
+				break;
 			}
-			break;
+			$controller->ActionIndex(isset($url[1])?$url[1]:-1);
 		}
-		$controller->ActionIndex(isset($url[1])?$url[1]:-1);
 		break;
 	case 'members':
 		$controller = new ProfileController();
-		$controller->ActionMembers();
+		if($controller->isLogin()) {
+			$controller->ActionMembers();
+		}
 		break;
 	case 'logout':
 	require_once 'src/controll/profile/logout.php';

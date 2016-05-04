@@ -1,11 +1,11 @@
 <?php
 
-use hive2\controll\DBActions;
+use hive2\controll\profile\DBProfileActions;
 use hive2\models\User;
 
 session_start();
 $user = $_SESSION['user'];
-$db = new DBActions($dbdriver, $dbhost, $dbname, $dbusername, $dbpassword);
+$db = new DBProfileActions($dbdriver, $dbhost, $dbname, $dbusername, $dbpassword);
 
 $db->setOffline($user->getEmail());
 

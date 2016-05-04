@@ -19,7 +19,7 @@ class User
 		$this->password = $password;
 		$this->resume = $resume;
 		$this->online = $online;
-		$this->friends = $friends;
+		$this->friends = unserialize($friends);
 	}
 
 	public function getId()

@@ -1,14 +1,14 @@
 <?php
 namespace hive2\controll;
 
-use hive2\controll\DBActionsInterface;
+use hive2\controll\DBLoginActionsInterface;
 use PDO;
 use hive2\config\Config;
 use hive2\models\User;
 
-require_once 'DBActionsInterface.php';
+require_once 'DBLoginActionsInterface.php';
 
-class DBActions implements DBActionsInterface
+class DBLoginActions implements DBLoginActionsInterface
 {
 	private $conn;
 
@@ -38,13 +38,6 @@ class DBActions implements DBActionsInterface
 		}
 	}
 
-	public function getAllMembers()
-	{
-		$statement = $this->conn->query("select * from members limit 100");
-		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-		return $result;
-	}
-
 	public function getByFirstName($firstName)
 	{
 		$statement = $this->conn->query("select * from members where firstName='$firstName'");
@@ -64,29 +57,9 @@ class DBActions implements DBActionsInterface
 		$statement = $this->conn->query("update members set online='1' where email='$email'");
 	}
 
-	public function setOffline($email)
-	{
-		$statement = $this->conn->query("update members set online='0' where email='$email'");
-	}
-
 	public function updateProfile()
 	{
-
-	}
-
-	public function addFrined($user, $id)
-	{
-		$friends = unserialize($user->getfriends());
-		$friends[] = $id;
-		$friends = serialize($friends);
-		$statement = $this->conn->query("update members set friends='$friends' where id='{$user->getId()}'");
-	}
-
-	public function getFriends($id)
-	{
-		$statement = $this->conn->query("select friends from members where id='$id'");
-		$row = $statement->fetch(PDO::FETCH_ASSOC);
-		return $row;
+		return;
 	}
 
 	public function insertUser($name, $password, $email)

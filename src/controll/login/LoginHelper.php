@@ -2,7 +2,7 @@
 namespace hive2\controll\login;
 
 use hive2\models\User;
-use hive2\controll\DBActions;
+use hive2\controll\DBLoginActions;
 
 //require_once '../../../vendor/autoload.php';
 require_once "{$_SERVER['DOCUMENT_ROOT']}/hive2/vendor/autoload.php";
@@ -19,7 +19,7 @@ class LoginHelper implements LoginInterface
 	{
 		$this->email = $email;
 		$this->password = $pass;
-		$this->db = new DBActions();
+		$this->db = new DBLoginActions();
 	}
 
 	public function isUserRegistred()

@@ -4,76 +4,92 @@ use hive2\views\profile\ProfileView;
 use hive2\models\User;
 use hive2\models\UserFactory;
 use hive2\views\View;
-use hive2\controll\DBActions;
+use hive2\controll\profile\DBProfileActions;
 /**
  *
  */
 class ProfileController
 {
   private $user;
+  private $db;
+  private $view;
 
   public function __construct()
   {
     session_start();
     if (isset($_SESSION['user'])) {
     	$this->user = $_SESSION['user'];
+      $this->view = new View();
+      $this->db = new DBProfileActions();
+      $this->login = true;
     } else {
+      $this->login = false;
       $msg = "you need to authorize";
+      $view = new View();
     	print($view->render('index', ['error' => $msg]));
     }
+  }
+  public function isLogin()
+  {
+    return $this->login;
   }
 
   public function ActionIndex($id)
   {
-    $view = new View();
+    if ($id < 0) {
+      return;
+    }
     if($id == $this->user->getId()) {
-      print($view->render('profile/profile', ['user' => $this->user,
-                                              'guest' => false]));
+      print($this->view->render('profile/profile', ['globalUser' => $this->user,
+                                                    'user' => $this->user,
+                                                    'guest' => false]));
     } else {
-      $db = new DBActions();
-      $member = $db->getById($id);
+      $member = $this->db->getById($id);
       if($member){
-        print($view->render('profile/profile', ['user' => $member,
-                                                'guest' => true]));
+        print($this->view->render('profile/profile', ['globalUser' => $this->user,
+                                                      'user' => $member,
+                                                      'guest' => true]));
       } else {
-        print($view->render('profile/profile', ['user' => $this->user,
-                                                'guest' => false]));
+        print($this->view->render('profile/profile', ['globalUser' => $this->user,
+                                                      'user' => $this->user,
+                                                      'guest' => false]));
       }
     }
   }
 
   public function ActionMembers()
   {
-    $view = new View();
-    $db = new DBActions();
-    $result = $db->getAllMembers();
+    $result = $this->db->getAllMembers();
     $UF = new UserFactory();
     $members = $UF->createMembers($result);
-    print($view->render('profile/members', ['members' => $members]));
+    print($this->view->render('profile/members', ['globalUser' => $this->user,
+                                                  'members' => $members,
+                                                  'user' => $this->user]));
   }
 
   public function ActionAddFriend($id)
   {
-    $db = new DBActions();
-    $db->addFrined($this->user, $id);
+    $this->db->addFrined($this->user, $id);
     header("Location:/hive2/profile/$id");
   }
 
   public function ActionFriends($id)
   {
-    $view = new View();
-    $db = new DBActions();
-    $result = $db->getFriends($id);
+    $result = $this->db->getFriends($id);
     $result = unserialize($result['friends']);
     $friends = [];
     $UF = new UserFactory();
     if(empty($result)) {
-      print($view->render('profile/friends', ['empty' => 'no friends yet']));
+      print($this->view->render('profile/friends', ['globalUser' => $this->user,
+                                                    'empty' => 'no friends yet',
+                                                    'user' => $this->user]));
       return;
     }
     foreach ($result as $friendId) {
-      $friends[] = $db->getById($friendId);
+      $friends[] = $this->db->getById($friendId);
     }
-    print($view->render('profile/friends', ['members' => $friends]));
+    print($this->view->render('profile/friends', ['globalUser' => $this->user,
+                                                  'members' => $friends,
+                                                  'user' => $this->user]));
   }
 }
