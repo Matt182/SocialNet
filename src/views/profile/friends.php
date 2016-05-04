@@ -13,14 +13,14 @@ use hive2\models\User;
 		<li><a id="members" href="/hive2/members">Members</a></li>
 		<li><a id="logout" href="/hive2/logout">Log Out</a></li>
 	</ul>
-  <?php if(empty($empty)) : ?>
+  <?php if(empty($noFriends)) : ?>
     <ul>
       <?php foreach ($members as $member): ?>
           <li><a href="/hive2/profile/<?=$member->getId() ?>"> <?=$member->getFirstName()?> </a></li>
       <?php endforeach ?>
     </ul>
   <?php else : ?>
-      <?= $empty ?>
+      <?= $noFriends ?>
   <?php endif ?>
 </body>
 </html>

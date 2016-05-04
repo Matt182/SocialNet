@@ -81,7 +81,7 @@ class ProfileController
     $UF = new UserFactory();
     if(empty($result)) {
       print($this->view->render('profile/friends', ['globalUser' => $this->user,
-                                                    'empty' => 'no friends yet',
+                                                    'noFriends' => 'no friends yet',
                                                     'user' => $this->user]));
       return;
     }
