@@ -64,8 +64,9 @@ class DBLoginActions implements DBLoginActionsInterface
 
 	public function insertUser($name, $password, $email)
 	{
+		$friends = serialize([]);
 		try {
-			$result = $this->conn->exec("insert into members (firstName, password, email) value ('$name', '$password', '$email')");
+			$result = $this->conn->exec("insert into members (firstName, password, email, friends) value ('$name', '$password', '$email','$friends')");
 		} catch (PDOException $e) {
 			echo $e->getMessage();
 		}
