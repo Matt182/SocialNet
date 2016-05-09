@@ -9,7 +9,7 @@ class UserFactory
 {
 
   public function createUser(array $userData) {
-    $user = new User($userData['id'], $userData['firstName'], $userData['email'], $userData['password'], $userData['resume'], $userData['online'], $userData['friends']);
+    $user = new User($userData['id'], $userData['firstName'], $userData['email'], $userData['password'], $userData['resume'], $userData['online'], $userData['friends'], $userData['reqTo'], $userData['reqFrom']);
     return $user;
   }
 
@@ -17,7 +17,7 @@ class UserFactory
   {
     $result = [];
     foreach ($membersData as $member) {
-      $result[] = new User($member['id'], $member['firstName'], $member['email'], $member['password'], $member['resume'], $member['online'], $member['friends']);
+      $result[] = new User($member['id'], $member['firstName'], $member['email'], $member['password'], $member['resume'], $member['online'], $member['friends'], $member['reqTo'], $member['reqFrom']);
     }
     return $result;
   }

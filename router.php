@@ -25,12 +25,15 @@ switch ($url[0]) {
 		$controller->ActionAuthorize();
 		break;
 	case 'profile':
-		$controller = new ProfileController();
+		$controller = ProfileController::getInstance();
 		if($controller->isLogin()) {
 			if(isset($url[2])) {
 				switch ($url[2]) {
-					case 'addToFriends':
-						$controller->ActionAddFriend($url[1]);
+					case 'sendFriendReq':
+						$controller->sendFriendRequest($url[1]);
+						break;
+					case 'confirmFriendReq':
+						$controller->ActionConfirmFriend($url[1]);
 						break;
 					case 'friends':
 						$controller->ActionFriends($url[1]);
@@ -45,7 +48,7 @@ switch ($url[0]) {
 		}
 		break;
 	case 'members':
-		$controller = new ProfileController();
+		$controller = ProfileController::getInstance();
 		if($controller->isLogin()) {
 			$controller->ActionMembers();
 		}

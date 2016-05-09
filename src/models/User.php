@@ -10,8 +10,10 @@ class User
 	private $resume;
 	private $online;
 	private $friends;
+	private $reqTo;
+	private $reqFrom;
 
-	public function __construct($id, $firstName, $email, $password, $resume, $online, $friends)
+	public function __construct($id, $firstName, $email, $password, $resume, $online, $friends, $reqTo, $reqFrom)
 	{
 		$this->id = $id;
 		$this->firstName = $firstName;
@@ -20,6 +22,8 @@ class User
 		$this->resume = $resume;
 		$this->online = $online;
 		$this->friends = unserialize($friends);
+		$this->reqTo = unserialize($reqTo);
+		$this->reqFrom = unserialize($reqFrom);
 	}
 
 	public function getId()
@@ -41,8 +45,18 @@ class User
 	{
 		return $this->online;
 	}
-	public function getfriends()
+	public function getFriends()
 	{
 		return $this->friends;
+	}
+
+	public function getReqTo()
+	{
+		return $this->reqTo;
+	}
+
+	public function getReqFrom()
+	{
+		return $this->reqFrom;
 	}
 }

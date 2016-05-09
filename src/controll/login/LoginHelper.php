@@ -37,7 +37,7 @@ class LoginHelper implements LoginInterface
 	{
 		$this->db->setOnline($this->email);
 		$row = $this->db->getByEmail($this->email);
-		$this->user = new User($row['id'], $row['firstName'],$row['email'], $row['password'], $row['resume'], $row['online'], $row['friends']);
+		$this->user = new User($row['id'], $row['firstName'],$row['email'], $row['password'], $row['resume'], $row['online'], $row['friends'], $row['reqTo'], $row['reqFrom']);
 	}
 
 	public function getUser()

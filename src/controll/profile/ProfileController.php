@@ -13,8 +13,17 @@ class ProfileController
   private $user;
   private $db;
   private $view;
+  private static $instance = null;
 
-  public function __construct()
+  public static function getInstance()
+  {
+    if (is_null(self::$instance)) {
+      self::$instance = new self();
+    }
+      return self::$instance;
+  }
+
+  private function __construct()
   {
     session_start();
     if (isset($_SESSION['user'])) {
@@ -46,9 +55,20 @@ class ProfileController
     } else {
       $member = $this->db->getById($id);
       if($member){
+        $friendInfo;
+        if( in_array($id, $this->user->getFriends()) ) {
+          $friendInfo = "<p>Your friend</p>";
+        } elseif ( in_array($id, $this->user->getReqTo()) ) {
+          $friendInfo = "<p>Friend request sended</p>";
+        } elseif ( in_array($id, $this->user->getReqFrom()) ) {
+          $friendInfo = "<p><a href = '$id/confirmFriendReq'>Confirm requst</a></p>";
+        } else {
+          $friendInfo = "<p><a href = '$id/sendFriendReq'>Send requst</a></p>";
+        }
         print($this->view->render('profile/profile', ['globalUser' => $this->user,
                                                       'user' => $member,
-                                                      'guest' => true]));
+                                                      'guest' => true,
+                                                      'friendInfo' => $friendInfo]));
       } else {
         print($this->view->render('profile/profile', ['globalUser' => $this->user,
                                                       'user' => $this->user,
@@ -67,29 +87,48 @@ class ProfileController
                                                   'user' => $this->user]));
   }
 
-  public function ActionAddFriend($id)
+  public function ActionConfirmFriend($id)
   {
-    $this->db->addFrined($this->user, $id);
+    $this->db->addFriend($this->user, $id);
+    $this->user = $this->db->getById($this->user->getId());
+    $_SESSION['user'] = $this->user;
     header("Location:/hive2/profile/$id");
   }
 
   public function ActionFriends($id)
   {
-    $result = $this->db->getFriends($id);
-    $result = unserialize($result['friends']);
+    $reqRows = $this->db->getReqFrom($id);
+    $reqRows = unserialize($reqRows['reqFrom']);
+    $requests = [];
+    if(!empty($reqRows)) {
+      foreach ($reqRows as $requesterId) {
+        $requests[] = $this->db->getById($requesterId);
+      }
+    }
+
+    $friendsRows = $this->db->getFriends($id);
+    $friendsRows = unserialize($friendsRows['friends']);
     $friends = [];
-    $UF = new UserFactory();
-    if(empty($result)) {
+    if(empty($friendsRows)) {
       print($this->view->render('profile/friends', ['globalUser' => $this->user,
                                                     'noFriends' => 'no friends yet',
-                                                    'user' => $this->user]));
+                                                    'user' => $this->user,
+                                                    'requests' => $requests]));
       return;
     }
-    foreach ($result as $friendId) {
+    foreach ($friendsRows as $friendId) {
       $friends[] = $this->db->getById($friendId);
     }
     print($this->view->render('profile/friends', ['globalUser' => $this->user,
                                                   'members' => $friends,
-                                                  'user' => $this->user]));
+                                                  'user' => $this->user,
+                                                  'requests' => $requests]));
+  }
+
+  public function sendFriendRequest($id) {
+    $this->db->sendFriendRequest($this->user, $id);
+    $this->user = $this->db->getById($this->user->getId());
+    $_SESSION['user'] = $this->user;
+    header("Location:/hive2/profile/$id");
   }
 }

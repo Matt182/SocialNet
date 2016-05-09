@@ -29,7 +29,7 @@ class DBProfileActions
     $statement = $this->conn->query("select * from members where id='$id'");
     $row = $statement->fetch(PDO::FETCH_ASSOC);
     if ($row) {
-      $user = new User($row['id'], $row['firstName'],$row['email'], $row['password'], $row['resume'], $row['online'], $row['friends']);
+      $user = new User($row['id'], $row['firstName'],$row['email'], $row['password'], $row['resume'], $row['online'], $row['friends'], $row['reqTo'], $row['reqFrom']);
       return $user;
     } else {
       return null;
@@ -43,17 +43,71 @@ class DBProfileActions
     return $result;
   }
 
-  public function addFrined($user, $id)
+  public function addFriend($user, $memberId)
   {
-    $friends = unserialize($user->getfriends());
-    $friends[] = $id;
-    $friends = serialize($friends);
-    $statement = $this->conn->query("update members set friends='$friends' where id='{$user->getId()}'");
+    $this->conn->beginTransaction();
+    try {
+      //$file = fopen('C:\\xampp\\htdocs\\hive2\\src\\controll\\profile\\log.txt', 'w');
+      $friends = $user->getFriends();
+      $friends[] = $memberId;
+      $friends = serialize($friends);
+      $statement = $this->conn->query("update members set friends='$friends' where id='{$user->getId()}'");
+
+      $member = $this->getById($memberId);
+      $friends = $member->getFriends();
+      $friends[] = $user->getId();
+      $friends = serialize($friends);
+      $statement = $this->conn->query("update members set friends='$friends' where id='$memberId'");
+
+      $reqFrom = $user->getReqFrom();
+      $key = array_search($memberId, $reqFrom);
+      unset($reqFrom[$key]);
+      $reqFrom = serialize($reqFrom);
+      $statement = $this->conn->query("update members set reqFrom='$reqFrom' where id='{$user->getId()}'");
+
+      $reqTo = $member->getReqTo();
+      $key = array_search($user->getId(), $reqTo));
+      unset($reqTo[$key]);
+      $reqTo = serialize($reqTo);
+      $statement = $this->conn->query("update members set reqTo='$reqTo' where id='$memberId'");
+
+      $this->conn->commit();
+    } catch (Exception $e) {
+      echo $e->getMessage();
+      $this->conn->rollBack();
+      die();
+    }
+  }
+
+  public function sendFriendRequest($user, $memberId) {
+    $this->conn->beginTransaction();
+    try {
+      $reqTo = $user->getReqTo();
+      $reqTo[] = $memberId;
+      $reqTo = serialize($reqTo);
+      $statement = $this->conn->query("update members set reqTo='$reqTo' where id='{$user->getId()}'");
+      $reqFrom = $this->getById($memberId)->getReqFrom();
+      $reqFrom[] = $user->getId();
+      $reqFrom = serialize($reqFrom);
+      $statement = $this->conn->query("update members set reqFrom='$reqFrom' where id='$memberId'");
+
+      $this->conn->commit();
+    } catch (Exception $e) {
+      echo $e->getMessage();
+      $this->conn->rollBack();
+    }
   }
 
   public function getFriends($id)
   {
     $statement = $this->conn->query("select friends from members where id='$id'");
+    $row = $statement->fetch(PDO::FETCH_ASSOC);
+    return $row;
+  }
+
+  public function getReqFrom($id)
+  {
+    $statement = $this->conn->query("select reqFrom from members where id='$id'");
     $row = $statement->fetch(PDO::FETCH_ASSOC);
     return $row;
   }
