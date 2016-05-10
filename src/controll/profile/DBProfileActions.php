@@ -66,7 +66,7 @@ class DBProfileActions
       $statement = $this->conn->query("update members set reqFrom='$reqFrom' where id='{$user->getId()}'");
 
       $reqTo = $member->getReqTo();
-      $key = array_search($user->getId(), $reqTo));
+      $key = array_search($user->getId(), $reqTo);
       unset($reqTo[$key]);
       $reqTo = serialize($reqTo);
       $statement = $this->conn->query("update members set reqTo='$reqTo' where id='$memberId'");

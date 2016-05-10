@@ -48,13 +48,21 @@ class ProfileController
     if ($id < 0) {
       return;
     }
+    if (sizeof($this->user->getReqFrom())) {
+      $requests = sizeof($this->user->getReqFrom());
+    } else {
+      $requests = "";
+    }
     if($id == $this->user->getId()) {
+      $this->user = $this->db->getById($this->user->getId());
       print($this->view->render('profile/profile', ['globalUser' => $this->user,
                                                     'user' => $this->user,
-                                                    'guest' => false]));
+                                                    'guest' => false,
+                                                    'friendReqNotify' => $requests]));
     } else {
       $member = $this->db->getById($id);
       if($member){
+        $this->user = $this->db->getById($this->user->getId());
         $friendInfo;
         if( in_array($id, $this->user->getFriends()) ) {
           $friendInfo = "<p>Your friend</p>";
@@ -68,11 +76,13 @@ class ProfileController
         print($this->view->render('profile/profile', ['globalUser' => $this->user,
                                                       'user' => $member,
                                                       'guest' => true,
-                                                      'friendInfo' => $friendInfo]));
+                                                      'friendInfo' => $friendInfo,
+                                                      'friendReqNotify' => $requests]));
       } else {
         print($this->view->render('profile/profile', ['globalUser' => $this->user,
                                                       'user' => $this->user,
-                                                      'guest' => false]));
+                                                      'guest' => false,
+                                                      'friendReqNotify' => $requests]));
       }
     }
   }
@@ -80,11 +90,17 @@ class ProfileController
   public function ActionMembers()
   {
     $result = $this->db->getAllMembers();
+    if (sizeof($this->user->getReqFrom())) {
+      $requests = sizeof($this->user->getReqFrom());
+    } else {
+      $requests = "";
+    }
     $UF = new UserFactory();
     $members = $UF->createMembers($result);
     print($this->view->render('profile/members', ['globalUser' => $this->user,
                                                   'members' => $members,
-                                                  'user' => $this->user]));
+                                                  'user' => $this->user,
+                                                  'friendReqNotify' => $requests]));
   }
 
   public function ActionConfirmFriend($id)
@@ -92,7 +108,7 @@ class ProfileController
     $this->db->addFriend($this->user, $id);
     $this->user = $this->db->getById($this->user->getId());
     $_SESSION['user'] = $this->user;
-    header("Location:/hive2/profile/$id");
+    header("Location:/hive2/profile/{$this->user->getId()}/friends");
   }
 
   public function ActionFriends($id)
@@ -104,6 +120,9 @@ class ProfileController
       foreach ($reqRows as $requesterId) {
         $requests[] = $this->db->getById($requesterId);
       }
+      $friendReqNotify = sizeof($requests);
+    } else {
+      $friendReqNotify = '';
     }
 
     $friendsRows = $this->db->getFriends($id);
@@ -113,7 +132,8 @@ class ProfileController
       print($this->view->render('profile/friends', ['globalUser' => $this->user,
                                                     'noFriends' => 'no friends yet',
                                                     'user' => $this->user,
-                                                    'requests' => $requests]));
+                                                    'requests' => $requests,
+                                                    'friendReqNotify' => $friendReqNotify]));
       return;
     }
     foreach ($friendsRows as $friendId) {
@@ -122,7 +142,8 @@ class ProfileController
     print($this->view->render('profile/friends', ['globalUser' => $this->user,
                                                   'members' => $friends,
                                                   'user' => $this->user,
-                                                  'requests' => $requests]));
+                                                  'requests' => $requests,
+                                                  'friendReqNotify' => $friendReqNotify]));
   }
 
   public function sendFriendRequest($id) {

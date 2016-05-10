@@ -7,12 +7,7 @@ use hive2\models\User;
 	<title>Members</title>
 </head>
 <body>
-	<ul>
-		<li><a id="home" href="/hive2/profile/<?=$globalUser->getId() ?>">Hive2</a></li>
-		<li><a id="friends" href="/hive2/profile/<?=$user->getId() ?>/friends">Friends</a></li>
-		<li><a id="members" href="/hive2/members">Members</a></li>
-		<li><a id="logout" href="/hive2/logout">Log Out</a></li>
-	</ul>
+	<?php include_once 'navMenu.php'; ?>
 	<ul>
 	  <?php foreach ($members as $member): ?>
 	      <li><a href="/hive2/profile/<?=$member->getId() ?>"> <?=$member->getFirstName()?> </a></li>

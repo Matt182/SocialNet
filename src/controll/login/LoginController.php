@@ -3,9 +3,7 @@ namespace hive2\controll\login;
 use hive2\views\View;
 use hive2\models\User;
 use hive2\controll\DBActions;
-/**
-*
-*/
+
 class LoginController
 {
 
