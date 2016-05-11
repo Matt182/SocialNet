@@ -31,7 +31,6 @@ class LoginController
 				session_start();
 				$loginHelper->login();
 				$user = $loginHelper->getUser();
-				print_r($user);
 				$_SESSION['user'] = $user;
 				header("Location:profile/{$user->getId()}");
 			} else {

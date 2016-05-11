@@ -4,7 +4,7 @@ namespace hive2\controll\profile;
 use PDO;
 use hive2\config\Config;
 use hive2\models\User;
-
+use hive2\models\RecordFactory;
 
 class DBProfileActions
 {
@@ -24,12 +24,27 @@ class DBProfileActions
     }
   }
 
+  public function updateMe($id)
+  {
+    $statement = $this->conn->query("select * from members where id='$id'");
+    $userRow = $statement->fetch(PDO::FETCH_ASSOC);
+    $statement = $this->conn->query("select * from blog_records where author='$id'");
+    $recordRows = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $records = RecordFactory::createRecords($recordRows);
+
+    $user = new User($userRow['id'], $userRow['firstName'],$userRow['email'],
+            $userRow['password'], $userRow['resume'], $userRow['online'],
+            $userRow['wasOnline'], $userRow['friends'], $userRow['reqTo'],
+            $userRow['reqFrom'], $records);
+    return $user;
+  }
+
   public function getById($id)
   {
     $statement = $this->conn->query("select * from members where id='$id'");
     $row = $statement->fetch(PDO::FETCH_ASSOC);
     if ($row) {
-      $user = new User($row['id'], $row['firstName'],$row['email'], $row['password'], $row['resume'], $row['online'], $row['friends'], $row['reqTo'], $row['reqFrom']);
+      $user = new User($row['id'], $row['firstName'],$row['email'], $row['password'], $row['resume'], $row['online'], $row['wasOnline'], $row['friends'], $row['reqTo'], $row['reqFrom']);
       return $user;
     } else {
       return null;
@@ -47,7 +62,6 @@ class DBProfileActions
   {
     $this->conn->beginTransaction();
     try {
-      //$file = fopen('C:\\xampp\\htdocs\\hive2\\src\\controll\\profile\\log.txt', 'w');
       $friends = $user->getFriends();
       $friends[] = $memberId;
       $friends = serialize($friends);
@@ -75,7 +89,6 @@ class DBProfileActions
     } catch (Exception $e) {
       echo $e->getMessage();
       $this->conn->rollBack();
-      die();
     }
   }
 
@@ -112,8 +125,13 @@ class DBProfileActions
     return $row;
   }
 
-  public function setOffline($email)
+  public function setOffline($id)
   {
-    $statement = $this->conn->query("update members set online='0' where email='$email'");
+    $statement = $this->conn->query("update members set online='0' where id='$id'");
+  }
+
+  public function setWasOnline($id)
+  {
+    $statement = $this->conn->query("update members set wasOnline=now() where id='$id'");
   }
 }

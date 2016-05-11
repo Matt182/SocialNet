@@ -9,11 +9,4 @@ use hive2\models\User;
 
 $db = new DBProfileActions();
 
-$user = $db->getById(3);
-
-print_r($user->getFriends());
-print_r($friends);
-
-$db->addFriend($user, 9);
-$user = $db->getById(3);
-print_r(serialize($user->getFriends()));
+print_r($db->updateMe(2)->getRecords());

@@ -18,13 +18,37 @@ use hive2\models\User;
 			if ($user->isOnline()) {
 				echo "online";
 			} else {
-				echo "offline";
+				echo "was online: {$user->wasOnline()}";
 			}
 		?>
 		<hr>
-    <?php if ($guest) : ?>
-      <?= $friendInfo ?>
-    <?php endif?>
+    <?php if ($guest) :
+      switch ($guest) {
+        case 1: ?>
+          <p>Your friend</p>
+        <?php break;
+
+        case 2: ?>
+          <p>Friend request sended</p>
+        <?php break;
+
+        case 3: ?>
+          <p><a href = '<?= $user->getId() ?>/confirmFriendReq'>Confirm requst</a></p>
+        <?php break;
+
+        case 4: ?>
+          <p><a href = '<?= $user->getId() ?>/sendFriendReq'>Send requst</a></p>
+        <?php break;
+      }
+    else: ?>
+    <form method="post" action="postRecord">
+      <textarea type="text" name="content" id="content"></textarea>
+      <button type="submit" >post</button>
+    </form>
+  <?php endif; ?>
+    <?php foreach ($records as $record): ?>
+        <li> <?= $record->getContent() ?> </li>
+    <?php endforeach; ?>
 	</div>
 </body>
 </html>

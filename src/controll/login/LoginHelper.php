@@ -2,6 +2,7 @@
 namespace hive2\controll\login;
 
 use hive2\models\User;
+use hive2\models\RecordFactory;
 use hive2\controll\DBLoginActions;
 
 //require_once '../../../vendor/autoload.php';
@@ -26,7 +27,6 @@ class LoginHelper implements LoginInterface
 	{
 		$row = $this->db->getByEmail($this->email);
 		if(password_verify($this->password, $row['password'])) {
-
 			return true;
 		} else {
 			return false;
@@ -37,7 +37,10 @@ class LoginHelper implements LoginInterface
 	{
 		$this->db->setOnline($this->email);
 		$row = $this->db->getByEmail($this->email);
-		$this->user = new User($row['id'], $row['firstName'],$row['email'], $row['password'], $row['resume'], $row['online'], $row['friends'], $row['reqTo'], $row['reqFrom']);
+		$row['records'] = RecordFactory::createRecords($row['records']);
+		$this->user = new User($row['id'], $row['firstName'],$row['email'], $row['password'],
+													$row['resume'], $row['online'], $row['wasOnline'], $row['friends'],
+													$row['reqTo'], $row['reqFrom'], $row['records']);
 	}
 
 	public function getUser()

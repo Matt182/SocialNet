@@ -1,13 +1,13 @@
 <?php
-
 use hive2\controll\profile\DBProfileActions;
 use hive2\models\User;
 
 session_start();
 $user = $_SESSION['user'];
-$db = new DBProfileActions($dbdriver, $dbhost, $dbname, $dbusername, $dbpassword);
+$db = new DBProfileActions();
 
-$db->setOffline($user->getEmail());
+$db->setOffline($user->getId());
+$db->setWasOnline($user->getId());
 
 $_SESSION = array();
 if (session_id() != "" || isset($_COOKIE[session_name()]))
@@ -18,4 +18,4 @@ if (session_id() != "" || isset($_COOKIE[session_name()]))
 session_destroy();
 
 header('Location:/hive2/login');
-?>
+

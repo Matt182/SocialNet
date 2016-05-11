@@ -1,6 +1,9 @@
 <?php
 namespace hive2\models;
 
+/**
+ * User object
+ */
 class User
 {
 	private $id;
@@ -9,11 +12,13 @@ class User
 	private $password;
 	private $resume;
 	private $online;
+	private $wasOnline;
 	private $friends;
 	private $reqTo;
 	private $reqFrom;
+	private $records;
 
-	public function __construct($id, $firstName, $email, $password, $resume, $online, $friends, $reqTo, $reqFrom)
+	public function __construct($id, $firstName, $email, $password, $resume, $online, $wasOnline, $friends, $reqTo, $reqFrom, $records = [])
 	{
 		$this->id = $id;
 		$this->firstName = $firstName;
@@ -21,42 +26,95 @@ class User
 		$this->password = $password;
 		$this->resume = $resume;
 		$this->online = $online;
+		$this->wasOnline = $wasOnline;
 		$this->friends = unserialize($friends);
 		$this->reqTo = unserialize($reqTo);
 		$this->reqFrom = unserialize($reqFrom);
+		$this->records = $records;
 	}
 
-	public function getId()
-	{
-		return $this->id;
-	}
+    /**
+     * Get the value of Id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
-	public function getFirstName()
-	{
-		return $this->firstName;
-	}
+    /**
+     * Get the value of First Name
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
 
-	public function getEmail()
-	{
-		return $this->email;
-	}
+    /**
+     * Get the value of Email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
 
-	public function isOnline()
-	{
-		return $this->online;
-	}
-	public function getFriends()
-	{
-		return $this->friends;
-	}
+    /**
+     * Get the value of Online
+     *
+     * @return boolval
+     */
+    public function isOnline()
+    {
+        return $this->online;
+    }
 
-	public function getReqTo()
-	{
-		return $this->reqTo;
-	}
+    /**
+     * Get the value of Was Online
+     *
+     * @return DateTime
+     */
+    public function wasOnline()
+    {
+      return $this->wasOnline;
+    }
 
-	public function getReqFrom()
-	{
-		return $this->reqFrom;
-	}
-}
+		/**
+     * Get the value of Friends
+     *
+     * @return array
+     */
+		public function getFriends()
+		{
+			return $this->friends;
+		}
+
+		/**
+     * Get the value of sended requests
+     *
+     * @return array
+     */
+		public function getReqTo()
+		{
+			return $this->reqTo;
+		}
+
+		/**
+     * Get the value of recived requests
+     *
+     * @return array
+     */
+		public function getReqFrom()
+		{
+			return $this->reqFrom;
+		}
+
+		public function getRecords()
+		{
+			return $this->records;
+		}
+ }

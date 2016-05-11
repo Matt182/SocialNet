@@ -1,0 +1,81 @@
+<?php
+namespace hive2\controll\profile;
+
+use hive2\controll\profile\Controller;
+
+/**
+ * Контроллер отвечает за оброботку запроса на показ страници пользователя
+ */
+class ProfileController extends Controller
+{
+
+  private static $instance = null;
+
+  public static function getInstance()
+  {
+    if (is_null(self::$instance)) {
+      self::$instance = new self();
+    }
+      return self::$instance;
+  }
+
+  protected function __construct()
+  {
+    session_start();
+    parent::__construct();
+  }
+
+  /**
+   *
+   * обрабатывает запрос на показ пользователя с соответствующим ид
+   *
+   * @param int $id Ид соответвующего пользователя
+   * @return void
+   * @author matt
+   * @copyright matt
+   */
+  public function ActionIndex($id)
+  {
+    if ($id < 0) {
+      return;
+    }
+    if (sizeof($this->user->getReqFrom())) {
+      $requests = sizeof($this->user->getReqFrom());
+    } else {
+      $requests = "";
+    }
+    if($id == $this->user->getId()) {
+      $this->user = $this->db->getById($this->user->getId());
+      print($this->view->render('profile/profile', ['globalUser' => $this->user,
+                                                    'user' => $this->user,
+                                                    'guest' => false,
+                                                    'friendReqNotify' => $requests]));
+    } else {
+      $member = $this->db->getById($id);
+      if($member){
+        $this->user = $this->db->getById($this->user->getId());
+        $friendInfo;
+        if( in_array($id, $this->user->getFriends()) ) {
+          $friendInfo = "<p>Your friend</p>";
+        } elseif ( in_array($id, $this->user->getReqTo()) ) {
+          $friendInfo = "<p>Friend request sended</p>";
+        } elseif ( in_array($id, $this->user->getReqFrom()) ) {
+          $friendInfo = "<p><a href = '$id/confirmFriendReq'>Confirm requst</a></p>";
+        } else {
+          $friendInfo = "<p><a href = '$id/sendFriendReq'>Send requst</a></p>";
+        }
+        print($this->view->render('profile/profile', ['globalUser' => $this->user,
+                                                      'user' => $member,
+                                                      'guest' => true,
+                                                      'friendInfo' => $friendInfo,
+                                                      'friendReqNotify' => $requests]));
+      } else {
+        print($this->view->render('profile/profile', ['globalUser' => $this->user,
+                                                      'user' => $this->user,
+                                                      'guest' => false,
+                                                      'friendReqNotify' => $requests]));
+      }
+    }
+  }
+}
+

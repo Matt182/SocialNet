@@ -1,33 +1,29 @@
 <?php
 namespace hive2\controll\profile;
 
+use hive2\views\profile\ProfileView;
+use hive2\models\User;
+use hive2\models\UserFactory;
+use hive2\views\View;
+use hive2\controll\profile\DBProfileActions;
+use hive2\controll\profile\Controller;
+
 /**
- * НЕ используется на этот момент
- *
- * @param
- * @return    void
- * @author
- * @copyright
+ * Базовый класс контроллеров работающих с авторизованым пользователем
+
+
  */
 class Controller
 {
+  /** @var User $user contains authorized User object */
+  protected $user;
+  /** @var DBProfileActions $db contains db connection */
+  protected $db;
+  protected $view;
+  protected $login;
 
-  private $user;
-  private $db;
-  private $view;
-  private static $instance = null;
-
-  public static function getInstance()
+  protected function __construct()
   {
-    if (is_null(self::$instance)) {
-      self::$instance = new self();
-    }
-      return self::$instance;
-  }
-
-  private function __construct()
-  {
-    session_start();
     if (isset($_SESSION['user'])) {
     	$this->user = $_SESSION['user'];
       $this->view = new View();
@@ -39,5 +35,10 @@ class Controller
       $view = new View();
     	print($view->render('index', ['error' => $msg]));
     }
+  }
+
+  public function isLogin()
+  {
+    return $this->login;
   }
 }
