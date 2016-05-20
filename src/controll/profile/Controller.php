@@ -27,8 +27,9 @@ class Controller
   /** @var boolval $login */
   protected $login;
 
-  protected function __construct(DBProfileActionsInterface $DBProfileActions, $DBRecordsActions)
+  public function __construct(DBProfileActionsInterface $DBProfileActions, $DBRecordsActions)
   {
+    file_put_contents("log.txt","\n Controller construct", FILE_APPEND);
     if (isset($_SESSION['user'])) {
     	$this->user = $_SESSION['user'];
       $this->view = new View();

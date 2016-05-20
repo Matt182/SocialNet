@@ -18,6 +18,7 @@ class DBProfileActions implements DBProfileActionsInterface
     $dbname = Config::getDBName();
     $dbusername = Config::getDBUsername();
     $dbpassword = Config::getDBPass();
+    file_put_contents("log.txt","\n DB construct", FILE_APPEND);
     try{
       $this->conn = new PDO("$dbdriver:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
     } catch(PDOException $e) {

@@ -39,10 +39,8 @@ class DBLoginActions implements DBLoginActionsInterface
 
 	public function getComments($id)
 	{
-		file_put_contents('log.txt', print_r($id, true), FILE_APPEND);
 		$statement = $this->conn->query("select * from comments where record_id ='$id'");
 		$rows = $statement->fetchAll(PDO::FETCH_ASSOC);
-		file_put_contents('log.txt', print_r($rows, true), FILE_APPEND);
 		if(!$rows) {
 			$rows = [];
 		}

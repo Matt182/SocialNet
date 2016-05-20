@@ -4,17 +4,7 @@ namespace hive2\controll\profile;
 class FriendsController extends Controller
 {
 
-  private static $instance = null;
-
-  public static function getInstance($dbProfile, $dbRecords)
-  {
-    if (is_null(self::$instance)) {
-      self::$instance = new self($dbProfile, $dbRecords);
-    }
-      return self::$instance;
-  }
-
-  protected function __construct($dbProfile, $dbRecords)
+  public function __construct($dbProfile, $dbRecords)
   {
     parent::__construct($dbProfile, $dbRecords);
   }

@@ -37,10 +37,10 @@ switch ($url[0]) {
 		$controller->ActionAuthorize();
 		break;
 	case 'profile':
-		$controller = ProfileController::getInstance($dbProfile, $dbRecords);
+		$controller = new ProfileController($dbProfile, $dbRecords);
 		if($controller->isLogin()) {
 			if(isset($url[2])) {
-				$controller = FriendsController::getInstance($dbProfile, $dbRecords);
+				$controller = new FriendsController($dbProfile, $dbRecords);
 				switch ($url[2]) {
 					case 'sendFriendReq':
 						$controller->sendFriendRequest($url[1]);
@@ -52,16 +52,16 @@ switch ($url[0]) {
 						$controller->ActionIndex($url[1]);
 						break;
 					case 'postRecord':
-						$controller = ProfileController::getInstance($dbProfile, $dbRecords);
+						$controller = new ProfileController($dbProfile, $dbRecords);
 						$controller->ActionPostRecord($url[1]);
 						break;
 					case 'edit':
-						$controller = ProfileController::getInstance($dbProfile, $dbRecords);
+						$controller = new ProfileController($dbProfile, $dbRecords);
 						$controller->ActionEdit();
 						break;
 						case preg_match("/^[0-9]/i", $url[2]) ? true : false:
 							if($url[3] == 'addComment') {
-								$controller = ProfileController::getInstance($dbProfile, $dbRecords);
+								$controller = new ProfileController($dbProfile, $dbRecords);
 								$controller->ActionAddComment($url[2], $url[1]);
 							}
 							break;
@@ -76,7 +76,7 @@ switch ($url[0]) {
 		}
 		break;
 	case 'members':
-		$controller = MembersController::getInstance($dbProfile, $dbRecords);
+		$controller = new MembersController($dbProfile, $dbRecords);
 		if($controller->isLogin()) {
 			$controller->ActionIndex();
 		}
