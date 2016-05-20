@@ -1,0 +1,38 @@
+<?php
+namespace hive2\config;
+
+class Config
+{
+	static function getDBHost()
+	{
+		return $dbhost = 'localhost';
+	}
+
+	static function getDBPort()
+	{
+		return $port = '3306';
+
+	}
+
+	static function getDBDriver()
+	{
+		return "mysql";
+	}
+
+	static function getDBName()
+	{
+		return $dbname = 'hive2';
+	}
+
+	static function getDBUsername()
+	{
+		return $dbusername = 'root';
+	}
+
+	static function getDBPass()
+	{
+		return $dbpassword = '';
+
+	}
+}
+

@@ -63,6 +63,11 @@ class User
         return $this->email;
     }
 
+		public function getResume()
+		{
+			return $this->resume;
+		}
+
     /**
      * Get the value of Online
      *

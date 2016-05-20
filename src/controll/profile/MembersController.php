@@ -9,23 +9,23 @@ class MembersController extends Controller
 
   private static $instance = null;
 
-  public static function getInstance()
+  public static function getInstance($dbProfile, $dbRecords)
   {
     if (is_null(self::$instance)) {
-      self::$instance = new self();
+      self::$instance = new self($dbProfile, $dbRecords);
     }
       return self::$instance;
   }
 
-  protected function __construct()
+  protected function __construct($dbProfile, $dbRecords)
   {
     session_start();
-    parent::__construct();
+    parent::__construct($dbProfile, $dbRecords);
   }
 
   public function ActionIndex()
   {
-    $result = $this->db->getAllMembers();
+    $result = $this->dbProfile->getAllMembers();
     if (sizeof($this->user->getReqFrom())) {
       $requests = sizeof($this->user->getReqFrom());
     } else {

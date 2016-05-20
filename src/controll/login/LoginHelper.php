@@ -3,7 +3,7 @@ namespace hive2\controll\login;
 
 use hive2\models\User;
 use hive2\models\RecordFactory;
-use hive2\controll\DBLoginActions;
+use hive2\controll\login\DBLoginActions;
 
 //require_once '../../../vendor/autoload.php';
 require_once "{$_SERVER['DOCUMENT_ROOT']}/hive2/vendor/autoload.php";

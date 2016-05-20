@@ -1,5 +1,5 @@
 <?php
-use hive2\controll\profile\DBProfileActions;
+use hive2\controll\profile\DBActions\DBProfileActions;
 use hive2\models\User;
 
 session_start();

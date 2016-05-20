@@ -1,0 +1,546 @@
+Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => my text
+            [likes] => 0
+            [created] => 2016-05-13 11:16:13
+            [has_comments] => 0
+        )
+
+)
+55Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [record_id] => 5
+            [author_id] => 2
+            [author_name] => matt2
+            [content] => first co,mment
+            [created] => 2016-05-15 11:34:08
+        )
+
+)
+Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => my text
+            [likes] => 0
+            [created] => 2016-05-13 11:16:13
+            [has_comments] => 0
+        )
+
+)
+55Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [record_id] => 5
+            [author_id] => 2
+            [author_name] => matt2
+            [content] => first co,mment
+            [created] => 2016-05-15 11:34:08
+        )
+
+)
+Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => my text
+            [likes] => 0
+            [created] => 2016-05-13 11:16:13
+            [has_comments] => 0
+        )
+
+    [1] => Array
+        (
+            [id] => 8
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => test record 2
+            [likes] => 0
+            [created] => 2016-05-15 16:33:36
+            [has_comments] => 0
+        )
+
+)
+55Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [record_id] => 5
+            [author_id] => 2
+            [author_name] => matt2
+            [content] => first co,mment
+            [created] => 2016-05-15 11:34:08
+        )
+
+)
+88Array
+(
+)
+Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => my text
+            [likes] => 0
+            [created] => 2016-05-13 11:16:13
+            [has_comments] => 0
+        )
+
+    [1] => Array
+        (
+            [id] => 8
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => test record 2
+            [likes] => 0
+            [created] => 2016-05-15 16:33:36
+            [has_comments] => 0
+        )
+
+)
+55Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [record_id] => 5
+            [author_id] => 2
+            [author_name] => matt2
+            [content] => first co,mment
+            [created] => 2016-05-15 11:34:08
+        )
+
+)
+88Array
+(
+)
+Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => my text
+            [likes] => 0
+            [created] => 2016-05-13 11:16:13
+            [has_comments] => 0
+        )
+
+    [1] => Array
+        (
+            [id] => 8
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => test record 2
+            [likes] => 0
+            [created] => 2016-05-15 16:33:36
+            [has_comments] => 0
+        )
+
+)
+55Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [record_id] => 5
+            [author_id] => 2
+            [author_name] => matt2
+            [content] => first co,mment
+            [created] => 2016-05-15 11:34:08
+        )
+
+)
+88Array
+(
+)
+Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => my text
+            [likes] => 0
+            [created] => 2016-05-13 11:16:13
+            [has_comments] => 0
+        )
+
+    [1] => Array
+        (
+            [id] => 8
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => test record 2
+            [likes] => 0
+            [created] => 2016-05-15 16:33:36
+            [has_comments] => 0
+        )
+
+)
+55Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [record_id] => 5
+            [author_id] => 2
+            [author_name] => matt2
+            [content] => first co,mment
+            [created] => 2016-05-15 11:34:08
+        )
+
+)
+88Array
+(
+)
+Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => my text
+            [likes] => 0
+            [created] => 2016-05-13 11:16:13
+            [has_comments] => 0
+        )
+
+    [1] => Array
+        (
+            [id] => 8
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => test record 2
+            [likes] => 0
+            [created] => 2016-05-15 16:33:36
+            [has_comments] => 0
+        )
+
+)
+55Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [record_id] => 5
+            [author_id] => 2
+            [author_name] => matt2
+            [content] => first co,mment
+            [created] => 2016-05-15 11:34:08
+        )
+
+)
+88Array
+(
+)
+Array
+(
+    [0] => Array
+        (
+            [id] => 5
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => my text
+            [likes] => 0
+            [created] => 2016-05-13 11:16:13
+            [has_comments] => 0
+        )
+
+    [1] => Array
+        (
+            [id] => 8
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => test record 2
+            [likes] => 0
+            [created] => 2016-05-15 16:33:36
+            [has_comments] => 0
+        )
+
+)
+55Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [record_id] => 5
+            [author_id] => 2
+            [author_name] => matt2
+            [content] => first co,mment
+            [created] => 2016-05-15 11:34:08
+        )
+
+)
+88Array
+(
+)
+Array
+(
+    [0] => Array
+        (
+            [id] => 8
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => test record 2
+            [likes] => 0
+            [created] => 2016-05-15 16:33:36
+            [has_comments] => 0
+        )
+
+    [1] => Array
+        (
+            [id] => 5
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => my text
+            [likes] => 0
+            [created] => 2016-05-13 11:16:13
+            [has_comments] => 0
+        )
+
+)
+88Array
+(
+    [0] => Array
+        (
+            [id] => 8
+            [record_id] => 8
+            [author_id] => 2
+            [author_name] => matt2
+            [content] => must be 8
+            [created] => 2016-05-15 17:03:07
+        )
+
+)
+55Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [record_id] => 5
+            [author_id] => 2
+            [author_name] => matt2
+            [content] => first co,mment
+            [created] => 2016-05-15 11:34:08
+        )
+
+)
+Array
+(
+    [0] => Array
+        (
+            [id] => 8
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => test record 2
+            [likes] => 0
+            [created] => 2016-05-15 16:33:36
+            [has_comments] => 0
+        )
+
+    [1] => Array
+        (
+            [id] => 5
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => my text
+            [likes] => 0
+            [created] => 2016-05-13 11:16:13
+            [has_comments] => 0
+        )
+
+)
+88Array
+(
+    [0] => Array
+        (
+            [id] => 8
+            [record_id] => 8
+            [author_id] => 2
+            [author_name] => matt2
+            [content] => must be 8
+            [created] => 2016-05-15 17:03:07
+        )
+
+)
+55Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [record_id] => 5
+            [author_id] => 2
+            [author_name] => matt2
+            [content] => first co,mment
+            [created] => 2016-05-15 11:34:08
+        )
+
+)
+Array
+(
+    [0] => Array
+        (
+            [id] => 7
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 1
+            [content] => hi again
+            [likes] => 0
+            [created] => 2016-05-13 11:26:56
+            [has_comments] => 0
+        )
+
+    [1] => Array
+        (
+            [id] => 6
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 1
+            [content] => hi from matt2
+            [likes] => 0
+            [created] => 2016-05-13 11:16:26
+            [has_comments] => 0
+        )
+
+)
+77Array
+(
+)
+66Array
+(
+    [0] => Array
+        (
+            [id] => 2
+            [record_id] => 6
+            [author_id] => 2
+            [author_name] => matt2
+            [content] => comentsssssss
+            [created] => 2016-05-15 12:03:00
+        )
+
+    [1] => Array
+        (
+            [id] => 9
+            [record_id] => 6
+            [author_id] => 2
+            [author_name] => matt2
+            [content] => second comm ander 
+            [created] => 2016-05-15 17:16:07
+        )
+
+    [2] => Array
+        (
+            [id] => 10
+            [record_id] => 6
+            [author_id] => 2
+            [author_name] => matt2
+            [content] => third
+            [created] => 2016-05-15 17:17:48
+        )
+
+)
+Array
+(
+    [0] => Array
+        (
+            [id] => 7
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 1
+            [content] => hi again
+            [likes] => 0
+            [created] => 2016-05-13 11:26:56
+            [has_comments] => 0
+        )
+
+    [1] => Array
+        (
+            [id] => 6
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 1
+            [content] => hi from matt2
+            [likes] => 0
+            [created] => 2016-05-13 11:16:26
+            [has_comments] => 0
+        )
+
+)
+77Array
+(
+)
+66Array
+(
+    [0] => Array
+        (
+            [id] => 2
+            [record_id] => 6
+            [author_id] => 2
+            [author_name] => matt2
+            [content] => comentsssssss
+            [created] => 2016-05-15 12:03:00
+        )
+
+    [1] => Array
+        (
+            [id] => 9
+            [record_id] => 6
+            [author_id] => 2
+            [author_name] => matt2
+            [content] => second comm ander 
+            [created] => 2016-05-15 17:16:07
+        )
+
+    [2] => Array
+        (
+            [id] => 10
+            [record_id] => 6
+            [author_id] => 2
+            [author_name] => matt2
+            [content] => third
+            [created] => 2016-05-15 17:17:48
+        )
+
+)

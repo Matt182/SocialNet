@@ -7,19 +7,27 @@ namespace hive2\models;
 class Record
 {
   private $id;
-  private $author;
+  private $authorId;
+  private $authorName;
+  private $owner;
   private $content;
   private $likes;
   private $created;
+  private $hasComments;
   private $comments;
 
-  function __construct($id, $author, $content, $likes, $created, $comments)
+
+  function __construct($id, $authorId, $authorName, $owner, $content, $likes,
+                      $created, $hasComments, $comments)
   {
     $this->id = $id;
-    $this->author = $author;
+    $this->authorId = $authorId;
+    $this->authorName = $authorName;
+    $this->owner = $owner;
     $this->content = $content;
     $this->likes = $likes;
     $this->created = $created;
+    $this->hasComments = $hasComments;
     $this->comments = $comments;
   }
 
@@ -34,13 +42,28 @@ class Record
     }
 
     /**
-     * Get the value of Author
+     * Get id of Author
      *
      * @return int
      */
-    public function getAuthor()
+    public function getAuthorId()
     {
-        return $this->author;
+        return $this->authorId;
+    }
+
+    /**
+     * Get name of Author
+     *
+     * @return string
+     */
+    public function getAuthorName()
+    {
+        return $this->authorName;
+    }
+
+    public function getOwner()
+    {
+      return $this->owner;
     }
 
     /**
@@ -78,9 +101,14 @@ class Record
      *
      * @return boolval
      */
+    public function hasComments()
+    {
+        return $this->hasComments;
+    }
+
     public function getComments()
     {
-        return $this->comments;
+      return $this->comments;
     }
 
 }
