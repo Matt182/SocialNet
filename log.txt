@@ -1,278 +1,55 @@
-
- DB construct
- ProfileController construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- ProfileController construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- DB construct
- DB construct
- DB constructArray
+Array
 (
     [0] => Array
         (
-            [id] => 8
+            [id] => 7
             [author_id] => 2
             [author_name] => matt2
-            [owner_id] => 2
-            [content] => test record 2
+            [owner_id] => 1
+            [content] => hi again
             [likes] => 0
-            [created] => 2016-05-15 16:33:36
+            [created] => 2016-05-13 11:26:56
             [has_comments] => 0
         )
 
     [1] => Array
         (
-            [id] => 5
+            [id] => 6
             [author_id] => 2
             [author_name] => matt2
-            [owner_id] => 2
-            [content] => my text
+            [owner_id] => 1
+            [content] => hi from matt2
             [likes] => 0
-            [created] => 2016-05-13 11:16:13
+            [created] => 2016-05-13 11:16:26
             [has_comments] => 0
         )
 
 )
-85Array
+76Array
 (
     [0] => Array
         (
-            [id] => 8
+            [id] => 7
             [author_id] => 2
             [author_name] => matt2
-            [owner_id] => 2
-            [content] => test record 2
+            [owner_id] => 1
+            [content] => hi again
             [likes] => 0
-            [created] => 2016-05-15 16:33:36
+            [created] => 2016-05-13 11:26:56
             [has_comments] => 0
         )
 
     [1] => Array
         (
-            [id] => 5
+            [id] => 6
             [author_id] => 2
             [author_name] => matt2
-            [owner_id] => 2
-            [content] => my text
+            [owner_id] => 1
+            [content] => hi from matt2
             [likes] => 0
-            [created] => 2016-05-13 11:16:13
+            [created] => 2016-05-13 11:16:26
             [has_comments] => 0
         )
 
 )
-85
- DB construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- DB construct
- DB constructArray
-(
-    [0] => Array
-        (
-            [id] => 8
-            [author_id] => 2
-            [author_name] => matt2
-            [owner_id] => 2
-            [content] => test record 2
-            [likes] => 0
-            [created] => 2016-05-15 16:33:36
-            [has_comments] => 0
-        )
-
-    [1] => Array
-        (
-            [id] => 5
-            [author_id] => 2
-            [author_name] => matt2
-            [owner_id] => 2
-            [content] => my text
-            [likes] => 0
-            [created] => 2016-05-13 11:16:13
-            [has_comments] => 0
-        )
-
-)
-85Array
-(
-    [0] => Array
-        (
-            [id] => 8
-            [author_id] => 2
-            [author_name] => matt2
-            [owner_id] => 2
-            [content] => test record 2
-            [likes] => 0
-            [created] => 2016-05-15 16:33:36
-            [has_comments] => 0
-        )
-
-    [1] => Array
-        (
-            [id] => 5
-            [author_id] => 2
-            [author_name] => matt2
-            [owner_id] => 2
-            [content] => my text
-            [likes] => 0
-            [created] => 2016-05-13 11:16:13
-            [has_comments] => 0
-        )
-
-)
-85
- DB construct
- Controller construct
- DB construct
- DB construct
- Controller construct
- Controller construct
- DB construct
- DB construct
- Controller construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- DB construct
- Controller construct
- Controller construct
- DB construct
- DB construct
- Controller construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- DB construct
- Controller construct
- Controller construct
- DB construct
- DB construct
- Controller construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- DB construct
- Controller construct
- Controller construct
- DB construct
- DB construct
- Controller construct
- Controller construct
- DB construct
- Controller construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- DB construct
- Controller construct
- Controller construct
- DB construct
- DB construct
- Controller construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- DB construct
- Controller construct
- Controller construct
- DB construct
- DB construct
- Controller construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- Controller construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- Controller construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- Controller construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- DB construct
- Controller construct
- Controller construct
- Controller construct
- DB construct
- Controller construct
+76

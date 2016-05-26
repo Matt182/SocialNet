@@ -7,9 +7,7 @@ use hive2\models\User;
   <head>
     <meta charset="utf-8">
     <title>Profile <?=$user->getFirstName()?></title>
-    <?php #include_once 'head.php'; ?>
-    <link rel="stylesheet" href="/hive2/src/views/profile/normalize.css">
-    <link rel="stylesheet" href="/hive2/src/views/profile/styletest.css">
+    <?php include_once 'head.php'; ?>
   </head>
   <body>
     <div id="sidebar">
@@ -17,7 +15,7 @@ use hive2\models\User;
         <div id="name">
           <h2><?=$user->getFirstName()?></h2>
         </div>
-        <div id="avatar"><img src="/hive2/src/views/profile/avatars/default.jpg"></div>
+        <div id="avatar"><img src="<?= $avatarName ?>"></div>
 
          <p><?php if ($guest) :
            switch ($guest) {
@@ -112,7 +110,7 @@ use hive2\models\User;
                     </div>
               </div>
           <?php endforeach; ?>
-        
+
     </div>
   </body>
 </html>

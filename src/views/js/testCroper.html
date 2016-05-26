@@ -1,108 +1,110 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>test</title>
-  <meta charset="utf-8" />
-  <link rel="stylesheet" href="style.css" />
-  <script
-			  src="https://code.jquery.com/jquery-2.2.3.js"
-			  integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4="
-			  crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="Croppie-2.1.0/croppie.css" />
-        <script src="Croppie-2.1.0/croppie.js"></script>
+    <title>test</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <script
+    src="https://code.jquery.com/jquery-2.2.3.js"
+    integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4="
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="Croppie-2.1.0/croppie.css" />
+    <script src="Croppie-2.1.0/croppie.js"></script>
 
 </head>
 <body>
-  <div id="dialog">
-    <div class="demo">
+    <div id="dialog">
+        <div class="demo">
+        </div>
+        <button type="button" name="cancel" onclick="cancel()">Cancel</button>
+        <button type="button" name="save" onclick="save()">Save</button>
     </div>
-    <button type="button" name="cancel" onclick="cancel()">Cancel</button>
-    <button type="button" name="save" onclick="save()">Save</button>
-  </div>
-  <form method="post" action="test.php">
+    <form method="post" action="test.php">
 
-      <div id="avatar">
-        <img name='picture' id="picture"/>
-      </div>
-    <input type="hidden" id="hiddenSrc" name="src" value="" />
-    <input type="text" name="someField">
-    <!--<img id="image" src="" onload="cropp()" alt="image">-->
-    <!--<img id="result" src="" alt="imagePrev">-->
-    <div id="result"></div>
-    <input type="file" id="input" ><br>
-    <button type="submit">Edit</button>
-</form>
-<script>
-function readURL(input) {
+        <div id="avatar">
+            <img name='picture' id="picture"/>
+        </div>
+        <input type="hidden" id="hiddenSrc" name="src" value="" />
+        <input type="text" name="someField">
+        <!--<img id="image" src="" onload="cropp()" alt="image">-->
+        <!--<img id="result" src="" alt="imagePrev">-->
+        <div id="result"></div>
+        <input type="file" id="input" ><br>
+        <button type="submit">Edit</button>
+    </form>
+    <!--
+    <script>
+    function readURL(input) {
 
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
-        reader.onload = function (e) {
-            //$('#image').attr('src', e.target.result);
-            var img = new Image();
-            img.src = e.target.result;
-            var width = img.width;
-            if (width > 250) {
-              var percents = 1 - 250/width;
-              var onePercentW = img.width/100;
-              var onePercentH = img.height/100;
-              img.width = 250;
-              //img.height -= onePercentH*percents;
-              console.log(img.width);
+            reader.onload = function (e) {
+                //$('#image').attr('src', e.target.result);
+                var img = new Image();
+                img.src = e.target.result;
+                var width = img.width;
+                if (width > 250) {
+                    var percents = 1 - 250/width;
+                    var onePercentW = img.width/100;
+                    var onePercentH = img.height/100;
+                    img.width = 250;
+                    //img.height -= onePercentH*percents;
+                    console.log(img.width);
+                }
+                cropp(e.target.result, img.width, img.height);
             }
-            cropp(e.target.result, img.width, img.height);
+
+            reader.readAsDataURL(input.files[0]);
         }
-
-        reader.readAsDataURL(input.files[0]);
     }
-}
 
-$("#input").change(function(){
-    readURL(this);
+    $("#input").change(function(){
+        readURL(this);
+    });
+    </script>
+
+
+    <script>
+    function cropp(result, zw, zh) {
+        $('#dialog').show();
+        $('.demo').croppie({
+            viewport: {
+                width: zw-50,
+                height: zw-50,
+                type: 'square'
+            },
+            boundary: {
+                width: zw,
+                height: zh
+            }
+
+        });
+        $('.demo').croppie('bind', result);
+    };
+
+    function cancel() {
+        $('#dialog').hide();
+    }
+
+    function save() {
+        $('.demo').croppie('result', 'canvas', 'jpg').then(function (result) {
+            $('.croppie-result').remove();
+            $('#picture').attr('src', result);
+            $('#hiddenSrc').attr('value', result);
+            $('#dialog').hide();
+        });
+    }
+    /**
+    function getResult(){
+    $('.demo').croppie('result', 'html', 'jpg').then(function (result) {
+    $('.croppie-result').remove();
+    $('#result').append(result);
 });
-</script>
-
-
-<script>
-function cropp(result, zw, zh) {
-    $('#dialog').show();
-    $('.demo').croppie({
-      viewport: {
-        width: zw-50,
-        height: zw-50,
-        type: 'square'
-    },
-    boundary: {
-        width: zw,
-        height: zh
-    }
-
-  });
-  $('.demo').croppie('bind', result);
-};
-
-function cancel() {
-  $('#dialog').hide();
-}
-
-function save() {
-  $('.demo').croppie('result', 'canvas', 'jpg').then(function (result) {
-    $('.croppie-result').remove();
-    $('#picture').attr('src', result);
-    $('#hiddenSrc').attr('value', result);
-    $('#dialog').hide();
-  });
-}
-/**
-function getResult(){
-  $('.demo').croppie('result', 'html', 'jpg').then(function (result) {
-    $('.croppie-result').remove();
-   $('#result').append(result);
-  });
 };
 */
 </script>
-
+-->
+<script src="scripts.js"></script>
 </body>
 </html>
