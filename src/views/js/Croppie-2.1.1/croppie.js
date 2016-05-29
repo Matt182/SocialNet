@@ -2,7 +2,7 @@
  * Croppie
  * Copyright 2016
  * Foliotek
- * Version: 2.1.0
+ * Version: 2.1.1
  *************************/
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
@@ -219,7 +219,7 @@
         });
     }
 
-    function rotateCanvas(canvas, img, orientation) {
+    function drawCanvas(canvas, img, orientation) {
         var width = img.width,
             height = img.height,
             ctx = canvas.getContext('2d');
@@ -745,7 +745,7 @@
             _centerImage.call(self);
         }
 
-
+        _updateCenterPoint.call(self);
         _updateOverlay.call(self);
     }
 
@@ -796,7 +796,7 @@
             canvas = self.elements.canvas,
             img = self.elements.img,
             ctx = canvas.getContext('2d'),
-            exif = self.options.enableExif,
+            exif = _hasExif.call(self),
             customOrientation = self.options.enableOrientation && customOrientation;
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -805,13 +805,13 @@
 
         if (exif) {
             getExifOrientation(img, function (orientation) {
-                rotateCanvas(canvas, img, parseInt(orientation));
+                drawCanvas(canvas, img, parseInt(orientation));
                 if (customOrientation) {
-                    rotateCanvas(canvas, img, customOrientation);
+                    drawCanvas(canvas, img, customOrientation);
                 }
             });
         } else if (customOrientation) {
-            rotateCanvas(canvas, img, customOrientation);
+            drawCanvas(canvas, img, customOrientation);
         }
     }
 
@@ -900,10 +900,9 @@
         prom.then(function () {
             if (self.options.useCanvas) {
                 self.elements.img.exifdata = null;
-                _transferImageToCanvas.call(self, options.orientation);
+                _transferImageToCanvas.call(self, options.orientation || 1);
             }
             _updatePropertiesFromImage.call(self);
-            _updateCenterPoint.call(self);
             _triggerUpdate.call(self);
             if (cb) {
                 cb();
@@ -985,7 +984,6 @@
         data.circle = self.options.viewport.type === 'circle';
         data.url = self.data.url;
 
-        console.log(data);
         prom = new Promise(function (resolve, reject) {
             if (type === 'canvas') {
                 resolve(_getCanvasResult.call(self, self.elements.preview, data));
@@ -1021,7 +1019,7 @@
         if (deg === -90 || deg === 270) ornt = 8;
         if (deg === 180 || deg === -180) ornt = 3;
 
-        rotateCanvas(canvas, copy, ornt);
+        drawCanvas(canvas, copy, ornt);
         _onZoom.call(self);
     }
 
@@ -1035,8 +1033,8 @@
         delete self.elements;
     }
 
-    if (this.jQuery) {
-        var $ = this.jQuery;
+    if (window.jQuery) {
+        var $ = window.jQuery;
         $.fn.croppie = function (opts) {
             var ot = typeof opts;
 

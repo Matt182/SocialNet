@@ -8,7 +8,7 @@ use hive2\models\User;
 <head>
     <title>Edit <?=$user->getFirstName()?></title>
     <?php include_once 'head.php'; ?>
-    <link rel="stylesheet" href="/hive2/src/views/js/Croppie-2.1.0/croppie.css" />
+    <link rel="stylesheet" href="/hive2/src/views/js/Croppie-2.1.1/croppie.css" />
     <link rel="stylesheet" href="/hive2/src/views/style/style.css" />
 
 </head>
