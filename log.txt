@@ -532,4 +532,138 @@ test 3
         )
 
 )
+1110985Array
+(
+    [0] => Array
+        (
+            [id] => 11
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => qwerrt
+dsf
+dsg
+sd
+            [likes] => 0
+            [created] => 2016-05-25 10:51:21
+            [has_comments] => 0
+        )
+
+    [1] => Array
+        (
+            [id] => 10
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => test 4
+            [likes] => 0
+            [created] => 2016-05-22 17:20:41
+            [has_comments] => 0
+        )
+
+    [2] => Array
+        (
+            [id] => 9
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => test 3
+test 3
+            [likes] => 0
+            [created] => 2016-05-22 17:18:06
+            [has_comments] => 0
+        )
+
+    [3] => Array
+        (
+            [id] => 8
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => test record 2
+            [likes] => 0
+            [created] => 2016-05-15 16:33:36
+            [has_comments] => 0
+        )
+
+    [4] => Array
+        (
+            [id] => 5
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => my text
+            [likes] => 0
+            [created] => 2016-05-13 11:16:13
+            [has_comments] => 0
+        )
+
+)
+1110985Array
+(
+    [0] => Array
+        (
+            [id] => 11
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => qwerrt
+dsf
+dsg
+sd
+            [likes] => 0
+            [created] => 2016-05-25 10:51:21
+            [has_comments] => 0
+        )
+
+    [1] => Array
+        (
+            [id] => 10
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => test 4
+            [likes] => 0
+            [created] => 2016-05-22 17:20:41
+            [has_comments] => 0
+        )
+
+    [2] => Array
+        (
+            [id] => 9
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => test 3
+test 3
+            [likes] => 0
+            [created] => 2016-05-22 17:18:06
+            [has_comments] => 0
+        )
+
+    [3] => Array
+        (
+            [id] => 8
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => test record 2
+            [likes] => 0
+            [created] => 2016-05-15 16:33:36
+            [has_comments] => 0
+        )
+
+    [4] => Array
+        (
+            [id] => 5
+            [author_id] => 2
+            [author_name] => matt2
+            [owner_id] => 2
+            [content] => my text
+            [likes] => 0
+            [created] => 2016-05-13 11:16:13
+            [has_comments] => 0
+        )
+
+)
 1110985
