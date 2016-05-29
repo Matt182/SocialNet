@@ -47,6 +47,7 @@ function cropp(result, zw, zh) {
 
 function cancel() {
     $('#dialog').hide();
+    $('.demo').empty();
 }
 
 function save() {

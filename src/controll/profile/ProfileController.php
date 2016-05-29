@@ -47,7 +47,7 @@ class ProfileController extends Controller
             'avatarName' => $avatarName]));
         } else {
             $this->user = $this->dbProfile->updateMe($this->user->getId());
-            if(file_exists("/hive2/src/views/profile/avatars/{$member->getId()}avatar.jpg")) {
+            if(file_exists("src/views/profile/avatars/{$member->getId()}avatar.jpg")) {
                 $avatarName = "/hive2/src/views/profile/avatars/{$member->getId()}avatar.jpg";
             } else {
                 $avatarName = "/hive2/src/views/profile/avatars/default.jpg";

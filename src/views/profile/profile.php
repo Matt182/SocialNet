@@ -45,36 +45,41 @@ use hive2\models\User;
       </div>
     </div>
 
+    <div class="fakeBg">
+
+    </div>
 
     <div id="content">
-      <div id="online">
-          <span>
-              <?php
-              if ($user->isOnline()) {
-                  echo "online";
-              } else {
-                  echo "was online: {$user->wasOnline()}";
-              }
-              ?>
-        </span></div>
-      <div class="resume">
-        <div class="resume-header">
-            Resume
-        </div>
-        <div class="resume-body">
-        <p>
-            <?=$user->getResume()?>
-        </p>
-        </div>
-        </div>
-
-        <div class="post">
-            <form method="post" action="/hive2/profile/<?= $user->getId() ?>/postRecord">
-                <div class="post-area">
-                    <textarea name="content" placeholder="post record..."></textarea>
-                    <button type="submit" >post</button>
+        <div class="content-header">
+            <div id="online">
+                <span>
+                    <?php
+                    if ($user->isOnline()) {
+                        echo "online";
+                    } else {
+                        echo "was online: {$user->wasOnline()}";
+                    }
+                    ?>
+                </span>
+            </div>
+            <div class="resume">
+                <div class="resume-header">
+                    Resume
                 </div>
-            </form>
+                <div class="resume-body">
+                    <p>
+                        <?=$user->getResume()?>
+                    </p>
+                </div>
+            </div>
+            <div class="post">
+                <form method="post" action="/hive2/profile/<?= $user->getId() ?>/postRecord">
+                    <div class="post-area">
+                        <textarea name="content" placeholder="post record..."></textarea>
+                        <button type="submit" >post</button>
+                    </div>
+                </form>
+            </div>
         </div>
 
 
