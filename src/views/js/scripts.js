@@ -24,24 +24,28 @@ function readURL(input) {
     }
 }
 
-$("#input").change(function(){
-    readURL(this);
-});
+$("#input").change(
+    function(){
+        readURL(this);
+    }
+);
 
 function cropp(result, zw, zh) {
     $('#dialog').show();
-    $('.demo').croppie({
-        viewport: {
-            width: zw-50,
-            height: zw-50,
-            type: 'square'
-        },
-        boundary: {
-            width: zw,
-            height: zh
-        }
+    $('.demo').croppie(
+        {
+            viewport: {
+                width: zw-50,
+                height: zw-50,
+                type: 'square'
+            },
+            boundary: {
+                width: zw,
+                height: zh
+            }
 
-    });
+        }
+    );
     $('.demo').croppie('bind', result);
 };
 
@@ -51,12 +55,14 @@ function cancel() {
 }
 
 function save() {
-    $('.demo').croppie('result', 'canvas', 'jpg').then(function (result) {
-        $('.croppie-result').remove();
-        $('#picture').attr('src', result);
-        $('#hiddenSrc').attr('value', result);
-        $('#dialog').hide();
-    });
+    $('.demo').croppie('result', 'canvas', 'jpg').then(
+        function (result) {
+            $('.croppie-result').remove();
+            $('#picture').attr('src', result);
+            $('#hiddenSrc').attr('value', result);
+            $('#dialog').hide();
+        }
+    );
 }
 /**
 function getResult(){
@@ -66,3 +72,4 @@ $('#result').append(result);
 });
 };
 */
+

@@ -22,10 +22,12 @@ class MembersController extends Controller
         }
         $UF = new UserFactory();
         $members = $UF->createMembers($result);
-        print($this->view->render('profile/members', ['globalUser' => $this->user,
-        'members' => $members,
-        'user' => $this->user,
-        'friendReqNotify' => $requests]));
+        print($this->view->render(
+            'profile/members', ['globalUser' => $this->user,
+            'members' => $members,
+            'user' => $this->user,
+            'friendReqNotify' => $requests]
+        ));
     }
 
 }

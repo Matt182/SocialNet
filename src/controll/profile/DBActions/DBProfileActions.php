@@ -47,10 +47,12 @@ class DBProfileActions implements DBProfileActionsInterface
         }
         $records = RecordFactory::createRecords($recordRows);
 
-        $user = new User($userRow['id'], $userRow['firstName'],$userRow['email'],
-        $userRow['password'], $userRow['resume'], $userRow['online'],
-        $userRow['wasOnline'], $userRow['friends'], $userRow['reqTo'],
-        $userRow['reqFrom'], $records);
+        $user = new User(
+            $userRow['id'], $userRow['firstName'], $userRow['email'],
+            $userRow['password'], $userRow['resume'], $userRow['online'],
+            $userRow['wasOnline'], $userRow['friends'], $userRow['reqTo'],
+            $userRow['reqFrom'], $records
+        );
         return $user;
     }
 
@@ -59,7 +61,7 @@ class DBProfileActions implements DBProfileActionsInterface
         $statement = $this->conn->query("select * from members where id='$id'");
         $row = $statement->fetch(PDO::FETCH_ASSOC);
         if ($row) {
-            $user = new User($row['id'], $row['firstName'],$row['email'], $row['password'], $row['resume'], $row['online'], $row['wasOnline'], $row['friends'], $row['reqTo'], $row['reqFrom']);
+            $user = new User($row['id'], $row['firstName'], $row['email'], $row['password'], $row['resume'], $row['online'], $row['wasOnline'], $row['friends'], $row['reqTo'], $row['reqFrom']);
             return $user;
         } else {
             return null;
@@ -107,7 +109,8 @@ class DBProfileActions implements DBProfileActionsInterface
         }
     }
 
-    public function sendFriendRequest($user, $memberId) {
+    public function sendFriendRequest($user, $memberId) 
+    {
         $this->conn->beginTransaction();
         try {
             $reqTo = $user->getReqTo();

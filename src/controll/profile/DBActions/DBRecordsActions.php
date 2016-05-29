@@ -52,7 +52,9 @@ class DBRecordsActions implements DBRecordsActionsInterface
 
     public function addComment($recordId, $userId, $userName, $content)
     {
-        $result = $this->conn->exec("insert into comments (record_id, author_id, author_name, content)
-        value ('$recordId', '$userId', '$userName', '$content')");
+        $result = $this->conn->exec(
+            "insert into comments (record_id, author_id, author_name, content)
+        value ('$recordId', '$userId', '$userName', '$content')"
+        );
     }
 }

@@ -3,6 +3,6 @@ namespace hive2\controll\login;
 
 interface LoginInterface
 {
-	public function isUserRegistred();
-	public function getUser();
+    public function isUserRegistred();
+    public function getUser();
 }

@@ -4,24 +4,24 @@ use hive2\models\User;
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Members</title>
+    <title>Members</title>
 </head>
 <body>
-	<?php include_once 'navMenu.php'; ?>
-  <?php if(empty($noFriends)) : ?>
+    <?php require_once 'navMenu.php'; ?>
+    <?php if(empty($noFriends)) : ?>
     <ul>
-      <?php foreach ($members as $member): ?>
+        <?php foreach ($members as $member): ?>
           <li><a href="/hive2/profile/<?=$member->getId() ?>"> <?=$member->getFirstName()?> </a></li>
-      <?php endforeach; ?>
+        <?php endforeach; ?>
     </ul>
-  <?php else : ?>
-      <?= $noFriends ?>
-  <?php endif; ?>
-	<hr>
-		<?php foreach ($requests as $req): ?>
-			<li><a href="/hive2/profile/<?=$req->getId() ?>"> <?=$req->getFirstName()?> </a>
-				<a href="/hive2/profile/<?=$req->getId() ?>/confirmFriendReq">Confirm request</a>
-			</li>
-		<?php endforeach; ?>
+    <?php else : ?>
+        <?= $noFriends ?>
+    <?php endif; ?>
+    <hr>
+    <?php foreach ($requests as $req): ?>
+            <li><a href="/hive2/profile/<?=$req->getId() ?>"> <?=$req->getFirstName()?> </a>
+                <a href="/hive2/profile/<?=$req->getId() ?>/confirmFriendReq">Confirm request</a>
+            </li>
+    <?php endforeach; ?>
 </body>
 </html>

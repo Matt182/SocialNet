@@ -7,7 +7,7 @@ use hive2\models\User;
   <head>
     <meta charset="utf-8">
     <title>Profile <?=$user->getFirstName()?></title>
-    <?php include_once 'head.php'; ?>
+    <?php require_once 'head.php'; ?>
   </head>
   <body>
     <div id="sidebar">
@@ -18,30 +18,31 @@ use hive2\models\User;
         <div id="avatar"><img src="<?= $avatarName ?>"></div>
 
          <p><?php if ($guest) :
-           switch ($guest) {
-             case 1: ?>
-               Your friend
-             <?php break;
+                switch ($guest) {
+                case 1: ?>
+                  Your friend
+                    <?php break;
 
-             case 2: ?>
-               Friend request sended
-             <?php break;
+                case 2: ?>
+                  Friend request sended
+                    <?php break;
 
-             case 3: ?>
-               <a href = '<?= $user->getId() ?>/confirmFriendReq'>Confirm requst</a>
-             <?php break;
+                case 3: ?>
+                  <a href = '<?= $user->getId() ?>/confirmFriendReq'>Confirm requst</a>
+                    <?php break;
 
-             case 4: ?>
-               <a href = '<?= $user->getId() ?>/sendFriendReq'>Send requst</a>
-             <?php break;
+                case 4: ?>
+                  <a href = '<?= $user->getId() ?>/sendFriendReq'>Send requst</a>
+                    <?php break;
 
-             default:
-                break;
-           }
-         endif ?></p>
+                default:
+                    break;
+                }
+        endif ?></p>
 
-         <p><?php if(!$guest):?> <a href="<?= $user->getId() ?>/edit">Edit profile</a> <?php endif ?></p>
-         <div id="nav"><?php include_once 'navMenu.php'; ?></div>
+         <p><?php if(!$guest) :?> <a href="<?= $user->getId() ?>/edit">Edit profile</a> <?php 
+        endif ?></p>
+         <div id="nav"><?php require_once 'navMenu.php'; ?></div>
       </div>
     </div>
 
@@ -98,7 +99,7 @@ use hive2\models\User;
                                   <h4><?=$comm->getAuthorName()?></h4><span><?= $comm->getCreated()?></span>
                                 </div>
                                 <div class="comment-body">
-                                     <?= $comm->getContent() ?>
+                                        <?= $comm->getContent() ?>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -114,7 +115,7 @@ use hive2\models\User;
                         </div>
                     </div>
               </div>
-          <?php endforeach; ?>
+            <?php endforeach; ?>
 
     </div>
   </body>

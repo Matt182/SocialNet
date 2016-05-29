@@ -10,9 +10,8 @@ $db->setOffline($user->getId());
 $db->setWasOnline($user->getId());
 
 $_SESSION = array();
-if (session_id() != "" || isset($_COOKIE[session_name()]))
-{
-	setcookie(session_name(), '', time()-2592000, '/');
+if (session_id() != "" || isset($_COOKIE[session_name()])) {
+    setcookie(session_name(), '', time()-2592000, '/');
 }
 
 session_destroy();

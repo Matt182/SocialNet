@@ -7,7 +7,7 @@ use hive2\models\User;
 <html>
 <head>
     <title>Edit <?=$user->getFirstName()?></title>
-    <?php include_once 'head.php'; ?>
+    <?php require_once 'head.php'; ?>
     <link rel="stylesheet" href="/hive2/src/views/js/Croppie-2.1.1/croppie.css" />
     <link rel="stylesheet" href="/hive2/src/views/style/style.css" />
 
@@ -15,7 +15,7 @@ use hive2\models\User;
 <body>
     <div id="sidebar">
         <div id="menu">
-            <?php include_once 'navMenu.php'; ?>
+            <?php require_once 'navMenu.php'; ?>
         </div>
     </div>
     <div id="content">
