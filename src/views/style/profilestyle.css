@@ -73,9 +73,11 @@
     height: 100%;
     width: 70%;
     margin-left: 30%;
-    background-color: rgb(221, 223, 229);
+    background-color: #eee;
     z-index: -1;
 }
+
+
 
 
 #content {
@@ -83,7 +85,7 @@
     height: 100%;
     width: 70%;
     margin-left: 30%;
-    background: rgb(221, 223, 229);
+    background: #eee;
 }
 
 .content-header {
@@ -140,30 +142,6 @@
     height: 25px;
 }
 
-button {
-    padding: 5px;
-    border: 2px rgb(134, 235, 147) solid;
-    border-radius: 8px;
-    color: rgb(51, 115, 34);
-    background-color: white;
-    cursor: pointer;
-}
-button:hover {
-    background-color: rgb(134, 235, 147);
-
-}
-
-input, textarea {
-    border: 2px solid rgb(231, 232, 237);
-    padding: 1%;
-    border-radius: 8px;
-}
-
-input:focus , textarea:focus {
-    box-shadow: 0 0 10px rgba(134, 235, 147 ,0.7);
-}
-
-
 .record {
     width: 50%;
     margin: auto;
@@ -204,4 +182,3 @@ input:focus , textarea:focus {
 .comment-add {
     padding: 1%;
 }
-

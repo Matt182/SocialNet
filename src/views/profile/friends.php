@@ -7,7 +7,8 @@ use hive2\models\User;
     <title>Members</title>
 </head>
 <body>
-    <?php require_once 'navMenu.php'; ?>
+    <?php require_once 'sidebar.php';?>
+    <div class="fakeBg">
     <?php if(empty($noFriends)) : ?>
     <ul>
         <?php foreach ($members as $member): ?>

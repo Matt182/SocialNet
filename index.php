@@ -8,21 +8,21 @@ use hive2\controll\profile\MembersController;
 use hive2\controll\profile\LogoutController;
 use hive2\controll\profile\DBActions\DBRecordsActions;
 use hive2\controll\profile\DBActions\DBProfileActions;
-//use hive2\controll\profile\DBActions\interfaces\DBProfileActionsInterface;
+
 
 require_once 'vendor/autoload.php';
 
 $dbProfile = new DBProfileActions();
 $dbRecords = new DBRecordsActions();
 
-//preg_match('/\/(hive2)?\/?(\w+)?\/?(\w+)?\/?(\w+)?/', $_SERVER['REQUEST_URI'], $url);
-
-$url = explode('/', $_GET['url']);
+if (isset($_GET['url'])) {
+    $url = explode('/', $_GET['url']);
+}
 switch ($url[0]) {
 	case '':
 	case 'login':
 		$controller = new LoginController();
-		$controller->ActionIndex('index');
+		$controller->ActionIndex('login');
 		break;
 	case 'register':
 		$controller = new LoginController();

@@ -38,7 +38,7 @@ class LoginController
                 header("Location:profile/{$user->getId()}");
             } else {
                 $msg = "Wrong password or login";
-                print($view->render("index", ["error" => $msg]));
+                print($view->render("login", ["error" => $msg]));
             }
         } else {
             $msg = "Please enter data";

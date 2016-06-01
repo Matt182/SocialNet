@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/hive2/src/views/style/normalize.css">
+<link rel="stylesheet" href="/hive2/src/views/style/common.css">
 <link rel="stylesheet" href="/hive2/src/views/style/profilestyle.css">
 <script
             src="https://code.jquery.com/jquery-2.2.3.js"

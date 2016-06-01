@@ -1,0 +1,39 @@
+body {
+    background: #eee;
+}
+
+.wrapper {
+	margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+form {
+    max-width: 380px;
+    padding: 15px 35px 45px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+input, label {
+    display: block;
+    margin: auto;
+    width: 60%
+}
+
+label {
+    padding: 10px;
+}
+
+.buttons {
+    width: 60%;
+    margin: auto;
+    margin-top: 10%;
+}
+.buttons a {
+    float: right;
+    text-decoration:none;
+    cursor: pointer;
+    color: black;
+    font-weight: bolder;
+}
