@@ -37,3 +37,7 @@ label {
     color: black;
     font-weight: bolder;
 }
+
+.error {
+    color: red;
+}

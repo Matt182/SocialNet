@@ -2,18 +2,29 @@
 <html>
 <head>
 	<title>register</title>
+    <link rel="stylesheet" href="/hive2/src/views/style/normalize.css">
+    <link rel="stylesheet" href="/hive2/src/views/style/common.css">
+    <link rel="stylesheet" href="/hive2/src/views/style/login.css">
 </head>
 <body>
-	<p>
-		<?php if (!empty($error)) : ?>
-			<p class="error"><?= $error?></p>
-		<?php endif ?>
-	</p>
-	<form method="post" action="registrate">
-		Name<input type="text" name="firstName">
-		Email<input type="email" name="email">
-		Password<input type="password" name="password">
-		<input type="submit" value="sign up">
-	</form>
+    <div class="wrapper">
+
+    	<form method="post" action="registrate">
+            <p>
+        		<?php if (!empty($error)) : ?>
+        			<p class="error"><?= $error?></p>
+        		<?php endif ?>
+        	</p>
+            <label for="firstName">Name</label>
+    		<input type="text" name="firstName">
+            <label for="email">Email</label>
+    		<input type="email" name="email">
+            <label for="password">Password</label>
+    		<input type="password" name="password">
+            <div class="buttons">
+                <button type="submit">Sign up</button>
+            </div>
+    	</form>
+    </div>
 </body>
 </html>
