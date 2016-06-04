@@ -36,14 +36,14 @@ try {
         "CREATE TABLE IF NOT EXISTS $dbname.blog_records ( id SERIAL PRIMARY KEY,
 							author_id INT NOT NULL , author_name VARCHAR(16) , owner_id INT NOT NULL , content TEXT NOT NULL ,
 							likes INT NOT NULL DEFAULT '0' , created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
-							hasComments BOOLEAN NOT NULL DEFAULT FALSE ,INDEX (owner_id));"
+							hasComments BOOLEAN NOT NULL DEFAULT FALSE);"
     );
 
     $conn->exec(
         "CREATE TABLE IF NOT EXISTS $dbname.comments ( id SERIAL PRIMARY KEY,
 							record_id INT NOT NULL , author_id INT NOT NULL ,
 							author_name VARCHAR(16) NOT NULL , content TEXT NOT NULL ,
-							created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,INDEX (record_id));"
+							created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP);"
     );
     echo "created";
 } catch(PDOException $e) {
