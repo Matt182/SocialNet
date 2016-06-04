@@ -13,14 +13,24 @@ class DBProfileActions implements DBProfileActionsInterface
 
     function __construct()
     {
-        $dbdriver = Config::getDBDriver();
-        $dbhost = Config::getDBHost();
-        $dbname = Config::getDBName();
-        $dbusername = Config::getDBUsername();
-        $dbpassword = Config::getDBPass();
+        $dbopts = parse_url(getenv('DATABASE_URL'));
+
+        $dsn = 'pgsql:dbname='.ltrim($dbopts["path"],'/').';host='.$dbopts["host"] . ';port=' . $dbopts["port"];
+
+
+        //$dbdriver = Config::getDBDriver();
+        //$dbhost = Config::getDBHost();
+        //$dbhost = Config::getDBHost();
+        //$dbname = Config::getDBName();
+
+        //$dbusername = Config::getDBUsername();
+        $dbusername = $dbopts["user"];
+
+        //$dbpassword = Config::getDBPass();
+        $dbpassword = $dbopts["pass"];
 
         try{
-            $this->conn = new PDO("$dbdriver:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
+        $this->conn = new PDO(/*"$dbdriver:host=$dbhost;dbname=$dbname"*/$dsn, $dbusername, $dbpassword);
         } catch(PDOException $e) {
             echo $e->getMessage();
         }
@@ -109,7 +119,7 @@ class DBProfileActions implements DBProfileActionsInterface
         }
     }
 
-    public function sendFriendRequest($user, $memberId) 
+    public function sendFriendRequest($user, $memberId)
     {
         $this->conn->beginTransaction();
         try {
