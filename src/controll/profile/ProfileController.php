@@ -120,7 +120,7 @@ class ProfileController extends Controller
         ));
     }
 
-    public function sendFriendRequest($id) 
+    public function sendFriendRequest($id)
     {
         $this->dbProfile->sendFriendRequest($this->user, $id);
         $this->user = $this->dbProfile->updateMe($this->user->getId());
