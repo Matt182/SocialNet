@@ -29,7 +29,7 @@ try {
 							email VARCHAR(255) NOT NULL , resume TEXT NULL ,
 							online BOOLEAN NOT NULL DEFAULT FALSE , wasOnline DATETIME NULL ,
 							friends TEXT NOT NULL , reqTo TEXT NOT NULL , reqFrom TEXT NOT NULL ,
-							UNIQUE (email)) ENGINE = InnoDB
+							UNIQUE (email))
 							 CHARACTER SET utf8 COLLATE utf8_general_ci;"
     );
 
@@ -38,7 +38,7 @@ try {
 							author_id INT NOT NULL , author_name VARCHAR(16) , owner_id INT NOT NULL , content TEXT NOT NULL ,
 							likes INT NOT NULL DEFAULT '0' , created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,
 							hasComments BOOLEAN NOT NULL DEFAULT FALSE ,INDEX (owner_id))
-							 ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;"
+							 CHARACTER SET utf8 COLLATE utf8_general_ci;"
     );
 
     $conn->exec(
@@ -46,7 +46,7 @@ try {
 							record_id INT NOT NULL , author_id INT NOT NULL ,
 							author_name VARCHAR(16) NOT NULL , content TEXT NOT NULL ,
 							created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,INDEX (record_id))
-							 ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;"
+							 CHARACTER SET utf8 COLLATE utf8_general_ci;"
     );
     echo "created";
 } catch(PDOException $e) {
