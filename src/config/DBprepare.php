@@ -12,6 +12,7 @@ $dbname = 'hive2';
 $dbusername = 'root';
 $dbpassword = '';
 */
+$dbopts = parse_url(getenv('DATABASE_URL'));
 $dsn = 'pgsql:dbname='.ltrim($dbopts["path"],'/').';host='.$dbopts["host"] . ';port=' . $dbopts["port"];
 $dbusername = $dbopts["user"];
 $dbpassword = $dbopts["pass"];
