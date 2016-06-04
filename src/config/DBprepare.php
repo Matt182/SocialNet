@@ -27,7 +27,7 @@ try {
         "CREATE TABLE IF NOT EXISTS $dbname.members ( id SERIAL PRIMARY KEY,
 		 					firstName VARCHAR(16) NOT NULL , password VARCHAR(255) NOT NULL ,
 							email VARCHAR(255) NOT NULL , resume TEXT NULL ,
-							online BOOLEAN NOT NULL DEFAULT FALSE , wasOnline DATETIME NULL ,
+							online BOOLEAN NOT NULL DEFAULT FALSE , wasOnline TIMESTAMP NULL ,
 							friends TEXT NOT NULL , reqTo TEXT NOT NULL , reqFrom TEXT NOT NULL ,
 							UNIQUE (email));"
     );
@@ -35,7 +35,7 @@ try {
     $conn->exec(
         "CREATE TABLE IF NOT EXISTS $dbname.blog_records ( id SERIAL PRIMARY KEY,
 							author_id INT NOT NULL , author_name VARCHAR(16) , owner_id INT NOT NULL , content TEXT NOT NULL ,
-							likes INT NOT NULL DEFAULT '0' , created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+							likes INT NOT NULL DEFAULT '0' , created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
 							hasComments BOOLEAN NOT NULL DEFAULT FALSE ,INDEX (owner_id));"
     );
 
@@ -43,7 +43,7 @@ try {
         "CREATE TABLE IF NOT EXISTS $dbname.comments ( id SERIAL PRIMARY KEY,
 							record_id INT NOT NULL , author_id INT NOT NULL ,
 							author_name VARCHAR(16) NOT NULL , content TEXT NOT NULL ,
-							created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,INDEX (record_id));"
+							created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,INDEX (record_id));"
     );
     echo "created";
 } catch(PDOException $e) {
