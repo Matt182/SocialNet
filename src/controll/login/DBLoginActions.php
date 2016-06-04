@@ -3,6 +3,7 @@ namespace hive2\controll\login;
 
 use hive2\controll\login\DBLoginActionsInterface;
 use PDO;
+use hive2\controll\DB;
 use hive2\config\Config;
 use hive2\models\User;
 
@@ -10,19 +11,16 @@ require_once 'DBLoginActionsInterface.php';
 /**
 * Class with methods to interact with DB on login and authoriztion phase
 */
-class DBLoginActions implements DBLoginActionsInterface
+class DBLoginActions extends DB implements DBLoginActionsInterface
 {
-    /**
- * @var PDO $conn contains PDO connection to DB
-*/
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
+    /*
     private $conn;
 
-    /**
-    * creates PDO connection
-    *
-    * @param  void
-    * @return void
-    */
     function __construct()
     {
         $dbdriver = Config::getDBDriver();
@@ -37,7 +35,7 @@ class DBLoginActions implements DBLoginActionsInterface
             echo $e->getMessage();
         }
     }
-
+    */
     /**
      * Get comment of record with $id
      *

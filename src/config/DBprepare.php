@@ -2,15 +2,22 @@
 /**
  * Creates schema an databases
  */
+ /*
 $dbdriver = 'mysql';
 $dbhost = 'localhost';
 $port = '3306';
+*/
 $dbname = 'hive2';
+/*
 $dbusername = 'root';
 $dbpassword = '';
+*/
+$dsn = 'pgsql:dbname='.ltrim($dbopts["path"],'/').';host='.$dbopts["host"] . ';port=' . $dbopts["port"];
+$dbusername = $dbopts["user"];
+$dbpassword = $dbopts["pass"];
 
 try {
-    $conn = new PDO("$dbdriver:host=$dbhost", $dbusername, $dbpassword);
+    $conn = new PDO(/*"$dbdriver:host=$dbhost"*/$dsn, $dbusername, $dbpassword);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $db = $conn->prepare("CREATE SCHEMA IF NOT EXISTS $dbname");
     $db->execute();
@@ -30,7 +37,7 @@ try {
 							`author_id` INT NOT NULL , 'author_name' VARCHAR(16) , `owner_id` INT NOT NULL , `content` TEXT NOT NULL ,
 							`likes` INT NOT NULL DEFAULT '0' , `created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,
 							`hasComments` BOOLEAN NOT NULL DEFAULT FALSE , PRIMARY KEY (`id`), INDEX (`owner_id`))
-							 ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;" 
+							 ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;"
     );
 
     $conn->exec(

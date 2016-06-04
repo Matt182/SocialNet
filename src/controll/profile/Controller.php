@@ -15,34 +15,34 @@ use hive2\controll\profile\DBActions\DBRecordsActions;
 class Controller
 {
     /**
-* 
-     *
- * @var User $user contains authorized User object 
-*/
+    *
+    *
+    * @var User $user contains authorized User object
+    */
     protected $user;
     /**
-* 
-     *
- * @var DBProfileActions $dbProfile contains db of users connection 
-*/
+    *
+    *
+    * @var DBProfileActions $dbProfile contains db of users connection
+    */
     protected $dbProfile;
     /**
-* 
-     *
- * @var DBRecordsActions $dbRecords contains db of records connection 
-*/
+    *
+    *
+    * @var DBRecordsActions $dbRecords contains db of records connection
+    */
     protected $dbRecords;
     /**
-* 
-     *
- * @var View $view contains View object 
-*/
+    *
+    *
+    * @var View $view contains View object
+    */
     protected $view;
     /**
-* 
-     *
- * @var boolval $login 
-*/
+    *
+    *
+    * @var boolval $login
+    */
     protected $login;
 
     public function __construct(DBProfileActionsInterface $DBProfileActions, $DBRecordsActions)

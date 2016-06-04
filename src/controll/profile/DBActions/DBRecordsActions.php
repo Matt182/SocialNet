@@ -2,13 +2,20 @@
 namespace hive2\controll\profile\DBActions;
 
 use PDO;
+use hive2\controll\DB;
 use hive2\config\Config;
 use hive2\models\Record;
 use hive2\controll\profile\DBActions\interfaces\DBRecordsActionsInterface;
 
 
-class DBRecordsActions implements DBRecordsActionsInterface
+class DBRecordsActions extends DB implements DBRecordsActionsInterface
 {
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
+    /*
     private $conn;
 
     function __construct()
@@ -24,6 +31,7 @@ class DBRecordsActions implements DBRecordsActionsInterface
             echo $e->getMessage();
         }
     }
+    */
 
     public function getComments($id)
     {
