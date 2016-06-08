@@ -69,7 +69,7 @@ class ProfileController extends Controller
         $this->dbProfile->addFriend($this->user, $id);
         $this->user = $this->dbProfile->updateMe($this->user->getId());
         $_SESSION['user'] = $this->user;
-        header("Location:/hive2/profile/{$this->user->getId()}/friends");
+        header("Location:/profile/{$this->user->getId()}/friends");
     }
 
     public function ActionFriends($id)
@@ -80,7 +80,7 @@ class ProfileController extends Controller
         $requests = [];
         if(!empty($reqRows)) {
             foreach ($reqRows as $requesterId) {
-                $requests[] = $this->db->getById($requesterId);
+                $requests[] = $this->dbProfile->getById($requesterId);
             }
             $friendReqNotify = sizeof($requests);
         } else {

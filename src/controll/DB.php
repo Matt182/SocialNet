@@ -12,6 +12,7 @@ class DB
 
     function __construct()
     {
+
         $dbopts = parse_url(getenv('DATABASE_URL'));
 
         $dsn = 'pgsql:dbname='.ltrim($dbopts["path"],'/').';host='.$dbopts["host"] . ';port=' . $dbopts["port"];
@@ -23,10 +24,9 @@ class DB
         $dbname = Config::getDBName();
 
         $dbusername = Config::getDBUsername();
+        $dbpassword = Config::getDBPass();
         */
         $dbusername = $dbopts["user"];
-
-        //$dbpassword = Config::getDBPass();
         $dbpassword = $dbopts["pass"];
 
         try{
