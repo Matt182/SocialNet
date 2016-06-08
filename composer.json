@@ -1,6 +1,9 @@
 {
     "autoload": {
-        "psr-4": {"hive2\\": "src/"}
+        "psr-4": {"hive2\\": "src/"},
+        "files" : [
+            "src/controll/profile/Utils.php"
+        ]
     },
     "require-dev": {
     	"phpunit/phpunit": "5.0.*",

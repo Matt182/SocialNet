@@ -25,6 +25,9 @@ class LoginHelper implements LoginInterface
     public function isUserRegistred()
     {
         $row = $this->db->getByEmail($this->email);
+        if (!$row) {
+            return false;
+        }
         if(password_verify($this->password, $row['password'])) {
             return true;
         } else {
@@ -38,9 +41,9 @@ class LoginHelper implements LoginInterface
         $row = $this->db->getByEmail($this->email);
         $row['records'] = RecordFactory::createRecords($row['records']);
         $this->user = new User(
-            $row['id'], $row['firstName'], $row['email'], $row['password'],
-            $row['resume'], $row['online'], $row['wasOnline'], $row['friends'],
-            $row['reqTo'], $row['reqFrom'], $row['records']
+            $row['id'], $row['firstname'], $row['email'], $row['password'],
+            $row['resume'], $row['online'], $row['wasonline'], $row['friends'],
+            $row['reqto'], $row['reqfrom'], $row['records']
         );
     }
 

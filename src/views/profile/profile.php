@@ -1,15 +1,8 @@
 <?php
 use hive2\models\User;
+require_once 'head.php';
 ?>
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Profile <?=$user->getFirstName()?></title>
-    <?php require_once 'head.php'; ?>
-  </head>
-  <body>
+<body>
     <?php require_once 'sidebar.php';?>
     <div class="fakeBg">
 
@@ -39,49 +32,18 @@ use hive2\models\User;
                 </div>
             </div>
             <div class="post">
-                <form method="post" action="/hive2/profile/<?= $user->getId() ?>/postRecord">
+                <form name="postRecord">
                     <div class="post-area">
                         <textarea name="content" placeholder="post record..."></textarea>
-                        <button type="submit" >post</button>
+                        <button type="button" onclick="ajaxrecord(<?= $user->getId() ?>)">post</button>
                     </div>
                 </form>
             </div>
         </div>
-
-
-            <?php foreach ($records as $record): ?>
-              <div class="record">
-                  <div class="record-header"><h3><?=$record->getAuthorName()?></h3><span><?= $record->getCreated()?></span></div>
-                    <div class="record-body">
-                      <p>
-                        <?= $record->getContent() ?>
-                      </p>
-                    </div>
-                    <div class="record-footer">
-                        <?php foreach ($record->getComments() as $comm): ?>
-                            <div class="comment">
-                                <div class="comment-header">
-                                  <h4><?=$comm->getAuthorName()?></h4><span><?= $comm->getCreated()?></span>
-                                </div>
-                                <div class="comment-body">
-                                        <?= $comm->getContent() ?>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                        <div class="comment-add">
-                            <form method="post" action="/hive2/profile/<?= $user->getId() ?>/<?= $record->getId() ?>/addComment">
-                              <div>
-                                <input type="text" name="comment" id="comment" placeholder="Comment...">
-                                <span>
-                                  <button type="submit">Comment</button>
-                                </span>
-                              </div>
-                            </form>
-                        </div>
-                    </div>
-              </div>
-            <?php endforeach; ?>
-
+        <div id="records">
+            <?php include_once 'records.php';?>
+        </div>
     </div>
-  </body>
+    <script src="/src/views/js/ajaxrecords.js"></script>
+</body>
 </html>

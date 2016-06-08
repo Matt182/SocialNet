@@ -1,38 +1,20 @@
 <?php
 use hive2\models\User;
-
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Edit <?=$user->getFirstName()?></title>
-    <?php require_once 'head.php'; ?>
-    <link rel="stylesheet" href="/hive2/src/views/js/Croppie-2.1.1/croppie.css" />
-    <link rel="stylesheet" href="/hive2/src/views/style/style.css" />
-
-</head>
-<body>
-    <div id="sidebar">
-        <div id="menu">
-            <?php require_once 'navMenu.php'; ?>
-        </div>
-    </div>
+require_once 'head.php';
+require_once 'sidebar.php';?>
+<link rel="stylesheet" href="/src/views/js/Croppie-2.1.0/croppie.css" />
+<link rel="stylesheet" href="/src/views/style/style.css">
     <div id="content">
-        <form method="post" action="/hive2/profile/0/saveEdits">
+        <form method="post" action="/profile/<?=$globalUser->getId()?>/saveEdits">
             <div>
-
-                <div id="avatar"><img name='picture' id="picture" src="/hive2/src/views/profile/avatars/default.jpg"></div>
+                <div id="avatar"><img name='picture' id="picture" src="<?= $avatarName ?>"></div>
                 <input type="file" id="input" >
                 <input type="hidden" id="hiddenSrc" name="src" value="" />
-                <input type="text" name="firstName" placeholder="<?=$user->getFirstName()?>">
+                <input type="text" name="firstName" value="<?=$globalUser->getFirstName()?>">
             </div>
             <div>
                 <div>
-                    online
-                </div>
-                <div>
-                    <textarea name="resume" placeholder="<?=$user->getResume()?>"></textarea>
+                    <textarea name="resume" value="<?=$globalUser->getResume()?>"></textarea>
                     <button type="submit" value="save">save</button>
                 </div>
             </div>
@@ -45,7 +27,11 @@ use hive2\models\User;
         <button type="button" name="save" onclick="save()">Save</button>
     </div>
 
-    <script src="/hive2/src/views/js/Croppie-2.1.0/croppie.js"></script>
-    <script src="/hive2/src/views/js/scripts.js"></script>
+    <script
+              src="https://code.jquery.com/jquery-2.2.4.js"
+              integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+              crossorigin="anonymous"></script>
+    <script src="/src/views/js/Croppie-2.1.0/croppie.js"></script>
+    <script src="/src/views/js/scripts.js"></script>
 </body>
 </html>

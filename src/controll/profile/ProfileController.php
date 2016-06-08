@@ -3,6 +3,7 @@ namespace hive2\controll\profile;
 
 use hive2\controll\profile\Controller;
 use hive2\models\RecordFactory;
+use function hive2\controll\profile\getAvatar;
 
 /**
 * Контроллер отвечает за оброботку запроса на показ страници пользователя
@@ -21,8 +22,6 @@ class ProfileController extends Controller
     *
     * @param     int $id Ид соответвующего пользователя
     * @return    void
-    * @author    matt
-    * @copyright matt
     */
     public function ActionIndex($id)
     {
@@ -33,26 +32,18 @@ class ProfileController extends Controller
         }
         if (($id == $this->user->getId() || $id <= 0) || !$member = $this->dbProfile->getById($id) ) {
             $this->user = $this->dbProfile->updateMe($this->user->getId());
-            if(file_exists("src/views/profile/avatars/{$this->user->getId()}avatar.jpg")) {
-                $avatarName = "/hive2/src/views/profile/avatars/{$this->user->getId()}avatar.jpg";
-            } else {
-                $avatarName = "/hive2/src/views/profile/avatars/default.jpg";
-            }
+            $avatarName = getAvatar($this->user->getId());
             print($this->view->render(
                 'profile/profile', ['globalUser' => $this->user,
                 'user' => $this->user,
-                'guest' => 0,
+                'guest' => false,
                 'friendReqNotify' => $requests,
                 'records' => $this->user->getRecords(),
                 'avatarName' => $avatarName]
             ));
         } else {
             $this->user = $this->dbProfile->updateMe($this->user->getId());
-            if(file_exists("src/views/profile/avatars/{$member->getId()}avatar.jpg")) {
-                $avatarName = "/hive2/src/views/profile/avatars/{$member->getId()}avatar.jpg";
-            } else {
-                $avatarName = "/hive2/src/views/profile/avatars/default.jpg";
-            }
+            $avatarName = getAvatar($this->user->getId());
             if(in_array($id, $this->user->getFriends()) ) {
                 $relationCase = 1;
             } elseif (in_array($id, $this->user->getReqTo()) ) {
@@ -83,8 +74,9 @@ class ProfileController extends Controller
 
     public function ActionFriends($id)
     {
+        $avatarName = getAvatar($this->user->getId());
         $reqRows = $this->dbProfile->getReqFrom($id);
-        $reqRows = unserialize($reqRows['reqFrom']);
+        $reqRows = unserialize($reqRows['reqfrom']);
         $requests = [];
         if(!empty($reqRows)) {
             foreach ($reqRows as $requesterId) {
@@ -103,8 +95,10 @@ class ProfileController extends Controller
                 'profile/friends', ['globalUser' => $this->user,
                 'noFriends' => 'no friends yet',
                 'user' => $this->user,
+                'guest' => false,
                 'requests' => $requests,
-                'friendReqNotify' => $friendReqNotify]
+                'friendReqNotify' => $friendReqNotify,
+                'avatarName' => $avatarName]
             ));
             return;
         }
@@ -115,8 +109,10 @@ class ProfileController extends Controller
             'profile/friends', ['globalUser' => $this->user,
             'members' => $friends,
             'user' => $this->user,
+            'guest' => false,
             'requests' => $requests,
-            'friendReqNotify' => $friendReqNotify]
+            'friendReqNotify' => $friendReqNotify,
+            'avatarName' => $avatarName]
         ));
     }
 
@@ -125,7 +121,7 @@ class ProfileController extends Controller
         $this->dbProfile->sendFriendRequest($this->user, $id);
         $this->user = $this->dbProfile->updateMe($this->user->getId());
         $_SESSION['user'] = $this->user;
-        header("Location:/hive2/profile/$id");
+        header("Location:/profile/$id");
     }
 
     public function ActionPostRecord($ownerId)
@@ -134,11 +130,16 @@ class ProfileController extends Controller
         $this->dbRecords->addRecord($this->user->getId(), $this->user->getFirstName(), $ownerId, $content);
         $this->user = $this->dbProfile->updateMe($this->user->getId());
         $_SESSION['user'] = $this->user;
-        header("Location:/hive2/profile/$ownerId");
+        print($this->view->render("profile/records",[
+            'globalUser' => $this->user,
+            'records' => $this->getRecords($ownerId),
+            'user' =>  $this->dbProfile->getById($ownerId)
+        ]));
     }
 
     public function ActionEdit()
     {
+        $avatarName = getAvatar($this->user->getId());
         if ($requests = $this->user->getReqFrom()) {
             $requests = sizeof($requests);
         } else {
@@ -147,7 +148,9 @@ class ProfileController extends Controller
         print($this->view->render(
             'profile/editProfile', ['globalUser' => $this->user,
             'user' => $this->user,
-            'friendReqNotify' => $requests]
+            'guest' => false,
+            'friendReqNotify' => $requests,
+            'avatarName' => $avatarName]
         ));
     }
 
@@ -160,7 +163,7 @@ class ProfileController extends Controller
         );
         $this->user = $this->dbProfile->updateMe($this->user->getId());
         $_SESSION['user'] = $this->user;
-        header("Location:/hive2/profile/$locationId");
+        header("Location:/profile/$locationId");
     }
 
     public function getRecords($id)
@@ -181,6 +184,6 @@ class ProfileController extends Controller
         $name = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_STRING);
         $resume = filter_input(INPUT_POST, 'resume', FILTER_SANITIZE_STRING);
         $this->dbProfile->saveEdits($this->user->getId(), $name, $resume);
-        header("Location:/hive2/profile/{$this->user->getId()}");
+        header("Location:/profile/{$this->user->getId()}");
     }
 }

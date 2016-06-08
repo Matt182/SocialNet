@@ -172,13 +172,21 @@
     padding-right: 5%;
 }
 
-.comment{
-    width: 80%;
-    margin-left: 18%;
+.comment {
     border-top: grey 1px solid;
     padding: 1%;
 }
+.comment-avatar {
 
+    display: inline-block;
+    padding: 5px;
+    width: 10%;
+}
+.comment-content {
+    display: inline-block;
+    width: 80%;
+    padding-bottom: 20px;
+}
 .comment-add {
     padding: 1%;
 }

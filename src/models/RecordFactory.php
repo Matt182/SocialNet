@@ -14,7 +14,7 @@ class RecordFactory
         $result = [];
         foreach($rows as $row) {
             $row['comments'] = CommentFactory::createComments($row['comments']);
-            $result[] = new Record($row['id'], $row['author_id'], $row['author_name'], $row['owner_id'], $row['content'], $row['likes'], $row['created'], $row['has_comments'], $row['comments']);
+            $result[] = new Record($row['id'], $row['author_id'], $row['author_name'], $row['owner_id'], $row['content'], $row['likes'], $row['created'], $row['hascomments'], $row['comments']);
         }
         return $result;
     }

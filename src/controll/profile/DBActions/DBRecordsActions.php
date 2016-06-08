@@ -35,7 +35,7 @@ class DBRecordsActions extends DB implements DBRecordsActionsInterface
 
     public function getComments($id)
     {
-        $statement = $this->conn->query("select * from comments where record_id ='$id'");
+        $statement = $this->conn->query("select * from hive2.comments where record_id ='$id'");
         $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
         if(!$rows) {
             $rows = [];
@@ -45,7 +45,7 @@ class DBRecordsActions extends DB implements DBRecordsActionsInterface
 
     public function getRecords($id)
     {
-        $statement = $this->conn->query("select * from blog_records where owner_id ='$id' order by created desc");
+        $statement = $this->conn->query("select * from hive2.blog_records where owner_id ='$id' order by created desc");
         $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
         for ($i=0; $i < sizeof($rows); $i++) {
             $rows[$i]['comments'] = $this->getComments($rows[$i]['id']);
@@ -55,14 +55,14 @@ class DBRecordsActions extends DB implements DBRecordsActionsInterface
 
     public function addRecord($authorId, $authorName, $ownerId, $content)
     {
-        $result = $this->conn->exec("insert into blog_records (author_id, author_name, owner_id, content) value ('$authorId', '$authorName', '$ownerId', '$content')");
+        $result = $this->conn->exec("insert into hive2.blog_records (author_id, author_name, owner_id, content) values ('$authorId', '$authorName', '$ownerId', '$content')");
     }
 
     public function addComment($recordId, $userId, $userName, $content)
     {
         $result = $this->conn->exec(
-            "insert into comments (record_id, author_id, author_name, content)
-        value ('$recordId', '$userId', '$userName', '$content')"
+            "insert into hive2.comments (record_id, author_id, author_name, content)
+        values ('$recordId', '$userId', '$userName', '$content')"
         );
     }
 }

@@ -31,7 +31,7 @@ class RegistrationController
                 print($view->render("register", ["error" => $msg]));
             } else {
                 $msg = "regestration completed by $name";
-                print($view->render("index", ["error" => $msg]));
+                print($view->render("login", ["error" => $msg]));
             }
 
         }

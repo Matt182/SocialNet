@@ -1,4 +1,5 @@
 <?php
+namespace hive2\controll\profile;
 use hive2\controll\profile\DBActions\DBProfileActions;
 use hive2\models\User;
 
@@ -16,4 +17,4 @@ if (session_id() != "" || isset($_COOKIE[session_name()])) {
 
 session_destroy();
 
-header('Location:/hive2/login');
+header('Location:/login');

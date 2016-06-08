@@ -1,7 +1,9 @@
-<link rel="stylesheet" href="/hive2/src/views/style/normalize.css">
-<link rel="stylesheet" href="/hive2/src/views/style/common.css">
-<link rel="stylesheet" href="/hive2/src/views/style/profilestyle.css">
-<script
-            src="https://code.jquery.com/jquery-2.2.3.js"
-            integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4="
-            crossorigin="anonymous"></script>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Profile <?=$user->getFirstName()?></title>
+    <link rel="stylesheet" href="/src/views/style/normalize.css">
+    <link rel="stylesheet" href="/src/views/style/common.css">
+    <link rel="stylesheet" href="/src/views/style/profilestyle.css">
+</head>

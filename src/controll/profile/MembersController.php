@@ -14,6 +14,7 @@ class MembersController extends Controller
 
     public function ActionIndex()
     {
+        $avatarName = getAvatar($this->user->getId());
         $result = $this->dbProfile->getAllMembers();
         if (sizeof($this->user->getReqFrom())) {
             $requests = sizeof($this->user->getReqFrom());
@@ -26,7 +27,9 @@ class MembersController extends Controller
             'profile/members', ['globalUser' => $this->user,
             'members' => $members,
             'user' => $this->user,
-            'friendReqNotify' => $requests]
+            'guest' => false,
+            'friendReqNotify' => $requests,
+            'avatarName' => $avatarName]
         ));
     }
 

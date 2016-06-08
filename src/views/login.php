@@ -2,8 +2,8 @@
 <html>
 <head>
 	<title>HIVE2</title>
-    <link rel="stylesheet" href="/hive2/src/views/style/normalize.css">
-    <link rel="stylesheet" href="/hive2/src/views/style/common.css">
+    <link rel="stylesheet" href="/src/views/style/normalize.css">
+    <link rel="stylesheet" href="/src/views/style/common.css">
     <link rel="stylesheet" href="/src/views/style/login.css">
 </head>
 <body>

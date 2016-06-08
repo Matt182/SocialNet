@@ -8,13 +8,13 @@ use hive2\models\User;
 class UserFactory
 {
 
-    public function createUser(array $userData) 
+    public function createUser(array $userData)
     {
         $user = new User(
-            $userData['id'], $userData['firstName'],
+            $userData['id'], $userData['firstname'],
             $userData['email'], $userData['password'], $userData['resume'],
-            $userData['online'], $userData['wasOnline'], $userData['friends'],
-            $userData['reqTo'], $userData['reqFrom']
+            $userData['online'], $userData['wasonline'], $userData['friends'],
+            $userData['reqto'], $userData['reqfrom']
         );
         return $user;
     }
@@ -24,10 +24,10 @@ class UserFactory
         $result = [];
         foreach ($membersData as $member) {
             $result[] = new User(
-                $member['id'], $member['firstName'],
+                $member['id'], $member['firstname'],
                 $member['email'], $member['password'], $member['resume'],
-                $member['online'], $member['wasOnline'], $member['friends'],
-                $member['reqTo'], $member['reqFrom']
+                $member['online'], $member['wasonline'], $member['friends'],
+                $member['reqto'], $member['reqfrom']
             );
         }
         return $result;

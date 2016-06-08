@@ -10,12 +10,7 @@ function readURL(input) {
             img.src = e.target.result;
             var width = img.width;
             if (width > 250) {
-                var percents = 1 - 250/width;
-                var onePercentW = img.width/100;
-                var onePercentH = img.height/100;
                 img.width = 250;
-                //img.height -= onePercentH*percents;
-                console.log(img.width);
             }
             cropp(e.target.result, img.width, img.height);
         }
@@ -32,20 +27,17 @@ $("#input").change(
 
 function cropp(result, zw, zh) {
     $('#dialog').show();
-    $('.demo').croppie(
-        {
+    $('.demo').croppie({
             viewport: {
-                width: zw-50,
-                height: zw-50,
+                width: 250,
+                height: 250,
                 type: 'square'
             },
             boundary: {
                 width: zw,
                 height: zh
             }
-
-        }
-    );
+    });
     $('.demo').croppie('bind', result);
 };
 
@@ -61,6 +53,7 @@ function save() {
             $('#picture').attr('src', result);
             $('#hiddenSrc').attr('value', result);
             $('#dialog').hide();
+            $('.demo').empty();
         }
     );
 }
@@ -72,4 +65,3 @@ $('#result').append(result);
 });
 };
 */
-

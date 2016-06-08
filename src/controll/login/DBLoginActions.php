@@ -44,7 +44,7 @@ class DBLoginActions extends DB implements DBLoginActionsInterface
      */
     public function getComments($id)
     {
-        $statement = $this->conn->query("select * from comments where record_id ='$id'");
+        $statement = $this->conn->query("select * from hive2.comments where record_id ='$id'");
         $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
         if(!$rows) {
             $rows = [];
@@ -60,7 +60,7 @@ class DBLoginActions extends DB implements DBLoginActionsInterface
     */
     public function getRecords($id)
     {
-        $statement = $this->conn->query("select * from blog_records where owner_id ='$id' order by created desc");
+        $statement = $this->conn->query("select * from hive2.blog_records where owner_id ='$id' order by created desc");
         $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
         for ($i=0; $i < sizeof($rows); $i++) {
             $rows[$i]['comments'] = $this->getComments($rows[$i]['id']);
@@ -76,7 +76,10 @@ class DBLoginActions extends DB implements DBLoginActionsInterface
     */
     public function getByEmail($email)
     {
-        $statement = $this->conn->query("select * from members where email='$email'");
+        $statement = $this->conn->query("select * from hive2.members where email='$email'");
+        if (!$statement) {
+            return false;
+        }
         $row = $statement->fetch(PDO::FETCH_ASSOC);
         $row['records'] = $this->getRecords($row['id']);
         return $row;
@@ -90,7 +93,7 @@ class DBLoginActions extends DB implements DBLoginActionsInterface
     */
     public function setOnline($email)
     {
-        $statement = $this->conn->query("update members set online='1' where email='$email'");
+        $statement = $this->conn->query("update hive2.members set online='1' where email='$email'");
     }
 
     /**
@@ -107,9 +110,9 @@ class DBLoginActions extends DB implements DBLoginActionsInterface
         $friends = serialize([]);
         $reqTo = serialize([]);
         $reqFrom = serialize([]);
-        $result = $this->conn->exec("insert into members
+        $result = $this->conn->exec("insert into hive2.members
             (firstName, password, email, friends, reqTo, reqFrom)
-            value ('$name', '$password', '$email','$friends','$reqTo','$reqFrom')");
+            values ('$name', '$password', '$email','$friends','$reqTo','$reqFrom')");
         return $result;
     }
 }

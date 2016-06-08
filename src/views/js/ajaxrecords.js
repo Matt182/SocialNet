@@ -1,17 +1,15 @@
 function ajaxrecord(id)
 {
     var xhr = new XMLHttpRequest();
+    var formData = new FormData(document.forms.postRecord);
 
-    var body = 'content=' +  encodeURIComponent(document.getElementsByTagName('textarea').value);
-
-    xhr.open('POST','/hive2/profile/'+ id +'/postRecord', true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    xhr.open('POST','/profile/'+ id +'/postRecord', true);
     xhr.onreadystatechange=function()
     {
         if (xhr.readyState==4 && xhr.status==200) {
             document.getElementById("records").innerHTML = xhr.responseText;
         }
     }
-    xhr.send(body);
+    xhr.send(formData);
 
 }
