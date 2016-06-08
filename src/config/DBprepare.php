@@ -3,19 +3,19 @@
  * Creates schema an databases
  */
 
-$dbdriver = 'pgsql';
-$dbhost = 'localhost';
-$port = '3306';
+//$dbdriver = 'pgsql';
+//$dbhost = 'localhost';
+//$port = '3306';
 
 $dbname = 'hive2';
 
-$dbusername = 'postgres';
-$dbpassword = 'root';
+//$dbusername = 'postgres';
+//$dbpassword = 'root';
 
-//$dbopts = parse_url(getenv('DATABASE_URL'));
-//$dsn = 'pgsql:dbname='.ltrim($dbopts["path"],'/').';host='.$dbopts["host"] . ';port=' . $dbopts["port"];
-//$dbusername = $dbopts["user"];
-//$dbpassword = $dbopts["pass"];
+$dbopts = parse_url(getenv('DATABASE_URL'));
+$dsn = 'pgsql:dbname='.ltrim($dbopts["path"],'/').';host='.$dbopts["host"] . ';port=' . $dbopts["port"];
+$dbusername = $dbopts["user"];
+$dbpassword = $dbopts["pass"];
 
 try {
     $conn = new PDO("$dbdriver:dbname=$dbname;host=$dbhost", $dbusername, $dbpassword);
