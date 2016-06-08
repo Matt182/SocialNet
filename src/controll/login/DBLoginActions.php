@@ -61,6 +61,9 @@ class DBLoginActions extends DB implements DBLoginActionsInterface
     public function getRecords($id)
     {
         $statement = $this->conn->query("select * from hive2.blog_records where owner_id ='$id' order by created desc");
+        if (!$statement) {
+            return [];
+        }
         $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
         for ($i=0; $i < sizeof($rows); $i++) {
             $rows[$i]['comments'] = $this->getComments($rows[$i]['id']);
