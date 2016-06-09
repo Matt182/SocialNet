@@ -8,10 +8,7 @@ function readURL(input) {
             //$('#image').attr('src', e.target.result);
             var img = new Image();
             img.src = e.target.result;
-            var width = img.width;
-            if (width > 250) {
-                img.width = 250;
-            }
+
             cropp(e.target.result, img.width, img.height);
         }
 
@@ -27,18 +24,18 @@ $("#input").change(
 
 function cropp(result, zw, zh) {
     $('#dialog').show();
-    $('.demo').croppie({
+    var element = $(".demo");
+    element.croppie({
             viewport: {
                 width: 250,
-                height: 250,
-                type: 'square'
+                height: 250
             },
             boundary: {
-                width: zw,
-                height: zh
+                width: 299,
+                height: 299
             }
     });
-    $('.demo').croppie('bind', result);
+    element.croppie('bind', result);
 };
 
 function cancel() {
@@ -47,7 +44,7 @@ function cancel() {
 }
 
 function save() {
-    $('.demo').croppie('result', 'canvas', 'jpg').then(
+    $('.demo').croppie('result', 'canvas').then(
         function (result) {
             $('.croppie-result').remove();
             $('#picture').attr('src', result);
@@ -58,10 +55,14 @@ function save() {
     );
 }
 /**
-function getResult(){
-$('.demo').croppie('result', 'html', 'jpg').then(function (result) {
-$('.croppie-result').remove();
-$('#result').append(result);
-});
-};
+var vanilla = new Croppie($('.demo'), {
+            viewport: { width: 200, height: 200 , type:'square'},
+            boundary: { width: 400, height: 400 },
+            showZoom: true
+        });
+        vanilla.bind('dac.jpg');
+            vanilla.result('canvas','original').then(function (src) {
+                    console.log(src);
+                    $('#picture').attr('src', src);
+            });
 */

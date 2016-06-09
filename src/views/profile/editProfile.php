@@ -7,7 +7,7 @@ require_once 'sidebar.php';?>
     <div id="content">
         <form method="post" action="/profile/<?=$globalUser->getId()?>/saveEdits">
             <div>
-                <div id="avatar"><img name='picture' id="picture" src="<?= $avatarName ?>"></div>
+                <div id="avatar"><img width="250px" name='picture' id="picture" src="<?= $avatarName ?>"></div>
                 <input type="file" id="input" >
                 <input type="hidden" id="hiddenSrc" name="src" value="" />
                 <input type="text" name="firstName" value="<?=$globalUser->getFirstName()?>">

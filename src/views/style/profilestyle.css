@@ -9,6 +9,7 @@
     margin: auto;
 }
 #menu #avatar img{
+    width: 250px;
     display: block;
     margin: auto;
     border: 4px solid white;

@@ -3,7 +3,7 @@
     <div id="name">
       <h2><?=$user->getFirstName()?></h2>
     </div>
-    <div id="avatar"><img width="60%" src="<?= $avatarName ?>"></div>
+    <div id="avatar"><img src="<?= $avatarName ?>"></div>
 
      <p><?php if ($guest) :
             switch ($guest) {

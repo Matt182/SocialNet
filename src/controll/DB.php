@@ -16,16 +16,16 @@ class DB
         $dbopts = parse_url(getenv('DATABASE_URL'));
 
         $dsn = 'pgsql:dbname='.ltrim($dbopts["path"],'/').';host='.$dbopts["host"] . ';port=' . $dbopts["port"];
-
+        //$dsn = "pgsql:dbname=hive2;host=localhost";
         /*
         $dbdriver = Config::getDBDriver();
         $dbhost = Config::getDBHost();
         $dbhost = Config::getDBHost();
         $dbname = Config::getDBName();
-
-        $dbusername = Config::getDBUsername();
-        $dbpassword = Config::getDBPass();
         */
+        //$dbusername = Config::getDBUsername();
+        //$dbpassword = Config::getDBPass()
+
         $dbusername = $dbopts["user"];
         $dbpassword = $dbopts["pass"];
 

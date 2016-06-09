@@ -43,7 +43,7 @@ class ProfileController extends Controller
             ));
         } else {
             $this->user = $this->dbProfile->updateMe($this->user->getId());
-            $avatarName = getAvatar($this->user->getId());
+            $avatarName = getAvatar($member->getId());
             if(in_array($id, $this->user->getFriends()) ) {
                 $relationCase = 1;
             } elseif (in_array($id, $this->user->getReqTo()) ) {
