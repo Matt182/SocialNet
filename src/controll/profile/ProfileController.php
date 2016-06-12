@@ -6,7 +6,7 @@ use hive2\models\RecordFactory;
 use function hive2\controll\profile\getAvatar;
 
 /**
-* Контроллер отвечает за оброботку запроса на показ страници пользователя
+* Controller works with profile pages
 */
 class ProfileController extends Controller
 {

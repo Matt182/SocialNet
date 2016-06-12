@@ -1,4 +1,8 @@
 <?php
+/**
+ * Different helpers functions
+ *
+ */
 namespace hive2\controll\profile;
 
 function getAvatar($id)

@@ -10,7 +10,7 @@ use hive2\controll\profile\DBActions\interfaces\DBProfileActionsInterface;
 use hive2\controll\profile\DBActions\DBRecordsActions;
 
 /**
-* Базовый класс контроллеров работающих с авторизованым пользователем
+* Base controller class
 */
 class Controller
 {

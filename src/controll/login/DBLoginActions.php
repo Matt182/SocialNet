@@ -18,24 +18,7 @@ class DBLoginActions extends DB implements DBLoginActionsInterface
     {
         parent::__construct();
     }
-    /*
-    private $conn;
 
-    function __construct()
-    {
-        $dbdriver = Config::getDBDriver();
-        $dbhost = Config::getDBHost();
-        $dbname = Config::getDBName();
-        $dbusername = Config::getDBUsername();
-        $dbpassword = Config::getDBPass();
-        try{
-            $this->conn = new PDO("$dbdriver:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch(PDOException $e) {
-            echo $e->getMessage();
-        }
-    }
-    */
     /**
      * Get comment of record with $id
      *
@@ -44,7 +27,7 @@ class DBLoginActions extends DB implements DBLoginActionsInterface
      */
     public function getComments($id)
     {
-        $statement = $this->conn->query("select * from hive2.comments where record_id ='$id'");
+        $statement = $this->conn->query("select * from $this->dbname.comments where record_id ='$id'");
         $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
         if(!$rows) {
             $rows = [];
@@ -60,7 +43,7 @@ class DBLoginActions extends DB implements DBLoginActionsInterface
     */
     public function getRecords($id)
     {
-        $statement = $this->conn->query("select * from hive2.blog_records where owner_id ='$id' order by created desc");
+        $statement = $this->conn->query("select * from $this->dbname.blog_records where owner_id ='$id' order by created desc");
         if (!$statement) {
             return [];
         }
@@ -79,7 +62,7 @@ class DBLoginActions extends DB implements DBLoginActionsInterface
     */
     public function getByEmail($email)
     {
-        $statement = $this->conn->query("select * from hive2.members where email='$email'");
+        $statement = $this->conn->query("select * from $this->dbname.members where email='$email'");
         if (!$statement) {
             return false;
         }
@@ -96,7 +79,7 @@ class DBLoginActions extends DB implements DBLoginActionsInterface
     */
     public function setOnline($email)
     {
-        $statement = $this->conn->query("update hive2.members set online='1' where email='$email'");
+        $statement = $this->conn->query("update $this->dbname.members set online=true where email='$email'");
     }
 
     /**
@@ -113,7 +96,7 @@ class DBLoginActions extends DB implements DBLoginActionsInterface
         $friends = serialize([]);
         $reqTo = serialize([]);
         $reqFrom = serialize([]);
-        $result = $this->conn->exec("insert into hive2.members
+        $result = $this->conn->exec("insert into $this->dbname.members
             (firstName, password, email, friends, reqTo, reqFrom)
             values ('$name', '$password', '$email','$friends','$reqTo','$reqFrom')");
         return $result;

@@ -11,6 +11,13 @@ use hive2\controll\profile\DBActions\DBProfileActions;
 
 
 require_once 'vendor/autoload.php';
+require_once 'src/config/Config.php';
+
+/**
+ * Router
+ * TODO: make good router
+ *
+ */
 
 $dbProfile = new DBProfileActions();
 $dbRecords = new DBRecordsActions();

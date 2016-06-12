@@ -28,7 +28,7 @@
             }
     endif ?></p>
 
-     <p><?php if(!$guest) :?> <a href="<?= $user->getId() ?>/edit">Edit profile</a> <?php
+     <p><?php if(!$guest) :?> <a href="/profile/<?= $user->getId() ?>/edit">Edit profile</a> <?php
     endif ?></p>
      <div id="nav"><?php require_once 'navMenu.php'; ?></div>
   </div>

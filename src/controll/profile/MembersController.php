@@ -4,6 +4,10 @@ namespace hive2\controll\profile;
 use hive2\models\UserFactory;
 use hive2\controll\profile\Controller;
 
+/**
+ * Controller works with members page
+ *
+ */
 class MembersController extends Controller
 {
     public function __construct($dbProfile, $dbRecords)
