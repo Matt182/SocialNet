@@ -9,6 +9,16 @@ use hive2\controll\login\DBLoginActions;
 */
 class RegistrationController
 {
+    public function __construct(DBLoginActions $dbLogin, View $view)
+    {
+        $this->view = $view;
+        $this->dbLogin = $dbLogin;
+    }
+
+    public function index($arg)
+    {
+        print($this->view->render('register'));
+    }
 
     public function ActionRegistrate()
     {

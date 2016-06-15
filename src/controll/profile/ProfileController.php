@@ -11,10 +11,9 @@ use function hive2\controll\profile\getAvatar;
 class ProfileController extends Controller
 {
 
-    public function __construct($dbProfile, $dbRecords)
+    public function __construct($dbProfile, $dbRecords, $view)
     {
-        session_start();
-        parent::__construct($dbProfile, $dbRecords);
+        parent::__construct($dbProfile, $dbRecords, $view);
     }
 
     /**
@@ -23,7 +22,7 @@ class ProfileController extends Controller
     * @param     int $id Ид соответвующего пользователя
     * @return    void
     */
-    public function ActionIndex($id)
+    public function index($id)
     {
         if ($requests = $this->user->getReqFrom()) {
             $requests = sizeof($requests);
@@ -72,7 +71,7 @@ class ProfileController extends Controller
         header("Location:/profile/{$this->user->getId()}/friends");
     }
 
-    public function ActionFriends($id)
+    public function friends($id)
     {
         $avatarName = getAvatar($this->user->getId());
         $reqRows = $this->dbProfile->getReqFrom($id);
@@ -124,7 +123,7 @@ class ProfileController extends Controller
         header("Location:/profile/$id");
     }
 
-    public function ActionPostRecord($ownerId)
+    public function postRecord($ownerId)
     {
         $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_STRING);
         $this->dbRecords->addRecord($this->user->getId(), $this->user->getFirstName(), $ownerId, $content);
@@ -137,7 +136,7 @@ class ProfileController extends Controller
         ]));
     }
 
-    public function ActionEdit()
+    public function edit()
     {
         $avatarName = getAvatar($this->user->getId());
         if ($requests = $this->user->getReqFrom()) {
@@ -154,7 +153,7 @@ class ProfileController extends Controller
         ));
     }
 
-    public function ActionAddComment($recordId, $locationId)
+    public function addComment($recordId, $locationId)
     {
         $content = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_STRING);
         $this->dbRecords->addComment(

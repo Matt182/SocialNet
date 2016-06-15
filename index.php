@@ -9,16 +9,47 @@ use hive2\controll\profile\LogoutController;
 use hive2\controll\profile\DBActions\DBRecordsActions;
 use hive2\controll\profile\DBActions\DBProfileActions;
 
+use hive2\router\Router;
+use hive2\router\Request;
 
 require_once 'vendor/autoload.php';
 require_once 'src/config/Config.php';
 
 /**
- * Router
- * TODO: make good router
- *
+ * To make rout add as first argument only controller name as it will be in uri
+ * without slashes, the Request class will do all the thing. Add second argement
+ * as real controller name. Right now you need to add manualy appropriate controller to
+ * ControllersStorage.
  */
 
+$router = new Router();
+
+$router->get('login', 'LoginController');
+$router->get('profile', 'ProfileController');
+$router->get('register', 'RegistrationController');
+$router->get('logout', 'LogoutController');
+$router->get('members', 'MembersController');
+
+$router->post('registerate', 'RegistrationController');
+$router->post('login', 'LoginController');
+$router->post('profile', 'ProfileController');
+
+
+
+session_start();
+$request = new Request();
+
+/*
+try {
+    $request->baba();
+} catch (\Exception $e) {
+    echo "okkke";
+}
+*/
+$router->current($request);
+
+
+/*
 $dbProfile = new DBProfileActions();
 $dbRecords = new DBRecordsActions();
 
@@ -97,3 +128,4 @@ if (isset($_GET['url'])) {
     $controller = new LoginController();
     $controller->ActionIndex('login');
 }
+*/

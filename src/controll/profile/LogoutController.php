@@ -3,18 +3,32 @@ namespace hive2\controll\profile;
 use hive2\controll\profile\DBActions\DBProfileActions;
 use hive2\models\User;
 
-session_start();
-$user = $_SESSION['user'];
-$db = new DBProfileActions();
+/**
+ *
+ */
+class LogoutController
+{
+    private $db;
 
-$db->setOffline($user->getId());
-$db->setWasOnline($user->getId());
+    public function __construct(DBProfileActions $db)
+    {
+        $this->db = $db;
+    }
 
-$_SESSION = array();
-if (session_id() != "" || isset($_COOKIE[session_name()])) {
-    setcookie(session_name(), '', time()-2592000, '/');
+    public function index()
+    {
+        $user = $_SESSION['user'];
+
+        $this->db->setOffline($user->getId());
+        $this->db->setWasOnline($user->getId());
+
+        $_SESSION = array();
+        if (session_id() != "" || isset($_COOKIE[session_name()])) {
+            setcookie(session_name(), '', time()-2592000, '/');
+        }
+
+        session_destroy();
+
+        header('Location:/login');
+    }
 }
-
-session_destroy();
-
-header('Location:/login');

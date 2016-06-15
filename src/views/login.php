@@ -9,7 +9,7 @@
 <body>
     <div class="wrapper">
 
-        	<form method="post" action="authorize">
+        	<form method="post" action="login/authorize">
                 <p>
                 	<?php if (!empty($error)) : ?>
                 		<p class="error"><?= $error?></p>

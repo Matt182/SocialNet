@@ -5,7 +5,8 @@
             "tests\\": "tests/"
         },
         "files" : [
-            "src/controll/profile/Utils.php"
+            "src/controll/profile/Utils.php",
+            "src/Auth/authHandler.php"
         ]
     },
     "require-dev": {

@@ -16,11 +16,11 @@
                 <?php break;
 
             case 3: ?>
-              <a href = '<?= $user->getId() ?>/confirmFriendReq'>Confirm requst</a>
+              <a href = 'confirmFriendReq/<?= $user->getId() ?>'>Confirm requst</a>
                 <?php break;
 
             case 4: ?>
-              <a href = '<?= $user->getId() ?>/sendFriendReq'>Send requst</a>
+              <a href = 'sendFriendReq/<?= $user->getId() ?>'>Send requst</a>
                 <?php break;
 
             default:
@@ -28,7 +28,7 @@
             }
     endif ?></p>
 
-     <p><?php if(!$guest) :?> <a href="/profile/<?= $user->getId() ?>/edit">Edit profile</a> <?php
+     <p><?php if(!$guest) :?> <a href="/profile/edit/<?= $user->getId() ?>">Edit profile</a> <?php
     endif ?></p>
      <div id="nav"><?php require_once 'navMenu.php'; ?></div>
   </div>

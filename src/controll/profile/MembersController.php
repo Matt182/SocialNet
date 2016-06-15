@@ -10,13 +10,12 @@ use hive2\controll\profile\Controller;
  */
 class MembersController extends Controller
 {
-    public function __construct($dbProfile, $dbRecords)
+    public function __construct($dbProfile, $dbRecords, $view)
     {
-        session_start();
-        parent::__construct($dbProfile, $dbRecords);
+        parent::__construct($dbProfile, $dbRecords, $view);
     }
 
-    public function ActionIndex()
+    public function index($arg)
     {
         $avatarName = getAvatar($this->user->getId());
         $result = $this->dbProfile->getAllMembers();

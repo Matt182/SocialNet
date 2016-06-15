@@ -22,7 +22,7 @@
                 </div>
             <?php endforeach; ?>
             <div class="comment-add">
-                <form method="post" action="/profile/<?= $user->getId() ?>/<?= $record->getId() ?>/addComment">
+                <form method="post" action="/profile/addComment/<?= $user->getId() ?>/<?= $record->getId() ?>">
                     <div>
                         <input type="text" name="comment" id="comment" placeholder="Comment...">
                         <span>

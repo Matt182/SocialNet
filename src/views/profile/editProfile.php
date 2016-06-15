@@ -8,7 +8,7 @@ require_once 'sidebar.php';?>
 
 </div>
 <div id="content">
-    <form method="post" action="/profile/<?=$globalUser->getId()?>/saveEdits">
+    <form method="post" action="/profile/saveEdits/<?=$globalUser->getId()?>">
         <div class="preview-form">
             <div class="avatar-preview">
                 <label>Preview</label>

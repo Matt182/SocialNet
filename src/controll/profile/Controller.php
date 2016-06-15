@@ -7,62 +7,45 @@ use hive2\models\UserFactory;
 use hive2\views\View;
 use hive2\controll\profile\DBActions\DBProfileActions;
 use hive2\controll\profile\DBActions\interfaces\DBProfileActionsInterface;
+use hive2\controll\profile\DBActions\interfaces\DBRecordsActionsInterface;
 use hive2\controll\profile\DBActions\DBRecordsActions;
 
 /**
 * Base controller class
 */
-class Controller
+abstract class Controller
 {
-    /**
-    *
-    *
-    * @var User $user contains authorized User object
-    */
+    /** @var User $user contains authorized User object */
     protected $user;
-    /**
-    *
-    *
-    * @var DBProfileActions $dbProfile contains db of users connection
-    */
+
+    /** @var DBProfileActions $dbProfile contains db of users connection */
     protected $dbProfile;
-    /**
-    *
-    *
-    * @var DBRecordsActions $dbRecords contains db of records connection
-    */
+
+    /** @var DBRecordsActions $dbRecords contains db of records connection */
     protected $dbRecords;
-    /**
-    *
-    *
-    * @var View $view contains View object
-    */
+
+    /** @var View $view contains View object */
     protected $view;
-    /**
-    *
-    *
-    * @var boolval $login
-    */
+
+    /**  @var boolval $login */
     protected $login;
 
-    public function __construct(DBProfileActionsInterface $DBProfileActions, $DBRecordsActions)
+    public function __construct(
+        DBProfileActionsInterface $DBProfileActions,
+        DBRecordsActionsInterface $DBRecordsActions,
+        View $view)
     {
-        if (isset($_SESSION['user'])) {
-            $this->user = $_SESSION['user'];
-            $this->view = new View();
-            $this->dbProfile = $DBProfileActions;
-            $this->dbRecords = $DBRecordsActions;
-            $this->login = true;
-        } else {
-            $this->login = false;
-            $msg = "you need to authorize";
-            $view = new View();
-            print($view->render('index', ['error' => $msg]));
-        }
+        $this->user = $_SESSION['user'];
+        $this->view = $view;
+        $this->dbProfile = $DBProfileActions;
+        $this->dbRecords = $DBRecordsActions;
+        $this->login = true;
     }
 
     public function isLogin()
     {
         return $this->login;
     }
+
+    abstract public function index($arg);
 }

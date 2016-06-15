@@ -10,19 +10,18 @@ use hive2\controll\login\DBActions;
 class LoginController
 {
 
-    public function ActionIndex($name)
+    public function __construct(DBLoginActions $dbLogin, View $view)
     {
-        $view = new View();
-        session_start();
-        if (isset($_SESSION['user'])) {
-            $user = $_SESSION['user'];
-            header("Location:profile/{$user->getId()}");
-        }else {
-            print($view->render($name));
-        }
+        $this->view = $view;
+        $this->dbLogin = $dbLogin;
     }
 
-    public function ActionAuthorize()
+    public function index($arg)
+    {
+        print($this->view->render('login'));
+    }
+
+    public function authorize()
     {
         $view = new View();
         $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
@@ -35,7 +34,7 @@ class LoginController
                 $loginHelper->login();
                 $user = $loginHelper->getUser();
                 $_SESSION['user'] = $user;
-                header("Location:profile/{$user->getId()}");
+                header("Location:/profile/{$user->getId()}");
             } else {
                 $msg = "Wrong password or login";
                 print($view->render("login", ["error" => $msg]));
