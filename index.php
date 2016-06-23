@@ -30,7 +30,7 @@ $router->get('register', 'RegistrationController');
 $router->get('logout', 'LogoutController');
 $router->get('members', 'MembersController');
 
-$router->post('registerate', 'RegistrationController');
+$router->post('register', 'RegistrationController');
 $router->post('login', 'LoginController');
 $router->post('profile', 'ProfileController');
 

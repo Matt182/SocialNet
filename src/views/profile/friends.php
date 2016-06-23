@@ -18,7 +18,7 @@ require_once 'head.php';
         <hr>
         <?php foreach ($requests as $req): ?>
             <li><a href="/profile/<?=$req->getId() ?>"> <?=$req->getFirstName()?> </a>
-                <a href="/profile/confirmFriendReq/<?=$req->getId() ?>">Confirm request</a>
+                <a href="/profile/confirmFriendRequest/<?=$req->getId() ?>">Confirm request</a>
             </li>
         <?php endforeach; ?>
     </body>

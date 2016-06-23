@@ -3,7 +3,7 @@ namespace hive2\router;
 
 use function hive2\auth\isAuthorized;
 /**
- *
+ *  Handle request
  */
 class Request
 {
@@ -51,12 +51,6 @@ class Request
         } else {
             $this->controllerMethod = $temparr[1];
             $this->controllerArg = empty($temparr[2]) ? '' : $temparr[2];
-        }
-    }
-
-    public function __call($name, $arguments) {
-        if (!method_exists($this, $name)) {
-            throw new \Exception($name . ' has shuffled the mortal coil');
         }
     }
 }

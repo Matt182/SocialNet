@@ -1,6 +1,9 @@
 <?php
 namespace hive2\models;
 
+/**
+* Comment model
+*/
 class Comment
 {
     private $id;
@@ -21,81 +24,75 @@ class Comment
     }
 
     /**
-* 
-* 
-     * Get the value of Id
-     *
-     * @return mixed
-     
-*/
-    public function getId()    
+    *
+    *
+    * Get the value of Id
+    *
+    * @return mixed
+    */
+    public function getId()
     {
         return $this->id;
-    
+
     }
     /**
-* 
-* 
-     * Get the value of Record Id
-     *
-     * @return mixed
-     
-*/
-    public function getRecordId()    
+    *
+    *
+    * Get the value of Record Id
+    *
+    * @return mixed
+    */
+    public function getRecordId()
     {
         return $this->record_id;
-    
+
     }
     /**
-* 
-* 
-     * Get the value of Author Id
-     *
-     * @return mixed
-     
-*/
-    public function getAuthorId()    
+    *
+    *
+    * Get the value of Author Id
+    *
+    * @return mixed
+    */
+    public function getAuthorId()
     {
         return $this->author_id;
-    
+
     }
     /**
-* 
-* 
-     * Get the value of Author Name
-     *
-     * @return mixed
-     
-*/
-    public function getAuthorName()    
+    *
+    *
+    * Get the value of Author Name
+    *
+    * @return mixed
+    */
+    public function getAuthorName()
     {
         return $this->author_name;
-    
+
     }
     /**
-* 
-* 
-     * Get the value of Content
-     *
-     * @return mixed
-     
-*/
-    public function getContent()    
+    *
+    *
+    * Get the value of Content
+    *
+    * @return mixed
+    */
+    public function getContent()
     {
         return $this->content;
-    
+
     }
     /**
-* 
-* 
-     * Get the value of Created
-     *
-     * @return mixed
-     
-*/
-    public function getCreated()    
+    *
+    *
+    * Get the value of Created
+    *
+    * @return mixed
+    */
+    public function getCreated()
     {
         return $this->created;
-    
+
     }
 }

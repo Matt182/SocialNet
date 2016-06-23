@@ -17,9 +17,9 @@ class ProfileController extends Controller
     }
 
     /**
-    * обрабатывает запрос на показ пользователя с соответствующим ид
+    * Renders profile page of user with apropriate id
     *
-    * @param     int $id Ид соответвующего пользователя
+    * @param     int $id
     * @return    void
     */
     public function index($id)
@@ -63,7 +63,13 @@ class ProfileController extends Controller
         }
     }
 
-    public function ActionConfirmFriend($id)
+    /**
+     * confirm user friend request
+     *
+     * @param     int $id
+     * @return    void
+     */
+    public function confirmFriendRequest($id)
     {
         $this->dbProfile->addFriend($this->user, $id);
         $this->user = $this->dbProfile->updateMe($this->user->getId());
@@ -71,6 +77,12 @@ class ProfileController extends Controller
         header("Location:/profile/{$this->user->getId()}/friends");
     }
 
+    /**
+     * Render page with friends of logged user
+     * TODO:complete method
+     * @param     int $id
+     * @return    void
+     */
     public function friends($id)
     {
         $avatarName = getAvatar($this->user->getId());
@@ -115,6 +127,12 @@ class ProfileController extends Controller
         ));
     }
 
+    /**
+     * Send friend request to user with apropriate id
+     *
+     * @param     int $id
+     * @return    void
+     */
     public function sendFriendRequest($id)
     {
         $this->dbProfile->sendFriendRequest($this->user, $id);
@@ -123,10 +141,16 @@ class ProfileController extends Controller
         header("Location:/profile/$id");
     }
 
+    /**
+     * Post record on page of user with apropriate id, uses AJAX
+     *
+     * @param     int $ownerId
+     * @return    void
+     */
     public function postRecord($ownerId)
     {
         $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_STRING);
-        $this->dbRecords->addRecord($this->user->getId(), $this->user->getFirstName(), $ownerId, $content);
+        $this->dbRecords->addRecord($this->user->getId(), $ownerId, $content);
         $this->user = $this->dbProfile->updateMe($this->user->getId());
         $_SESSION['user'] = $this->user;
         print($this->view->render("profile/records",[
@@ -136,6 +160,10 @@ class ProfileController extends Controller
         ]));
     }
 
+    /**
+     * Renders edit profile page
+     * @return    void
+     */
     public function edit()
     {
         $avatarName = getAvatar($this->user->getId());
@@ -153,25 +181,41 @@ class ProfileController extends Controller
         ));
     }
 
+    /**
+     * Post comment to post with apropriate id
+     *
+     * @param int $recordId
+     * @param int $locationId  id of page owner
+     *
+     * @return    void
+     */
     public function addComment($recordId, $locationId)
     {
         $content = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_STRING);
         $this->dbRecords->addComment(
-            $recordId, $this->user->getId(), $this->user->getFirstName(),
-            $content
+            $recordId, $this->user->getId(), $content
         );
         $this->user = $this->dbProfile->updateMe($this->user->getId());
         $_SESSION['user'] = $this->user;
         header("Location:/profile/$locationId");
     }
 
+    /**
+     * Gets records of user with apropriate id
+     * @param     int $id
+     * @return    void
+     */
     public function getRecords($id)
     {
         $rows = $this->dbRecords->getRecords($id);
-        return $records = RecordFactory::createRecords($rows);
+        return $records = RecordFactory::createRecords($rows, $this->dbRecords);
     }
 
-    public function ActionSaveEdits()
+    /**
+     * Save profile edits  
+     * @return    void
+     */
+    public function saveEdits()
     {
         $src = $_POST['src'];
         $src = str_replace('data:image/png;base64,', '', $src);

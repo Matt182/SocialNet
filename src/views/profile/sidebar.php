@@ -16,11 +16,11 @@
                 <?php break;
 
             case 3: ?>
-              <a href = 'confirmFriendReq/<?= $user->getId() ?>'>Confirm requst</a>
+              <a href = 'confirmFriendRequest/<?= $user->getId() ?>'>Confirm requst</a>
                 <?php break;
 
             case 4: ?>
-              <a href = 'sendFriendReq/<?= $user->getId() ?>'>Send requst</a>
+              <a href = 'sendFriendRequest/<?= $user->getId() ?>'>Send requst</a>
                 <?php break;
 
             default:

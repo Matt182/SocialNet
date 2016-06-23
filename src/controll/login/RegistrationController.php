@@ -15,12 +15,23 @@ class RegistrationController
         $this->dbLogin = $dbLogin;
     }
 
+    /**
+     * Renders registration page
+     *
+     * @param     string $arg (not uses, temporarely here)
+     * @return    void
+     */
     public function index($arg)
     {
         print($this->view->render('register'));
     }
 
-    public function ActionRegistrate()
+
+    /**
+     * Registrates new user
+     * @return    void
+     */
+    public function registrate()
     {
         if(isset($_POST['firstName'])) {
             $view = new View();

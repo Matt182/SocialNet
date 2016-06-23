@@ -9,7 +9,7 @@
 <body>
     <div class="wrapper">
 
-        	<form method="post" action="login/authorize">
+        	<form method="post" action="/login/authorize">
                 <p>
                 	<?php if (!empty($error)) : ?>
                 		<p class="error"><?= $error?></p>
@@ -21,7 +21,7 @@
         		<input id="password" type="password" name="password">
                 <div class="buttons">
                     <button type="submit" value="login">Login</button>
-                    <a href="register">Register</a>
+                    <a href="/register">Register</a>
                 </div>
         	</form>
 

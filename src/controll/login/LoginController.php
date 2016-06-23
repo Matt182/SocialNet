@@ -16,11 +16,21 @@ class LoginController
         $this->dbLogin = $dbLogin;
     }
 
+    /**
+     * render login page
+     *
+     * @param     string $arg (not used in function just temporalely)
+     * @return    void
+     */
     public function index($arg)
     {
         print($this->view->render('login'));
     }
 
+    /**
+     * Authorize user
+     * @return    void
+     */
     public function authorize()
     {
         $view = new View();
@@ -30,9 +40,7 @@ class LoginController
         if(isset($email) && $email != "") {
             $loginHelper = new LoginHelper($email, $password);
             if($password != "" && $loginHelper->isUserRegistred()) {
-                session_start();
-                $loginHelper->login();
-                $user = $loginHelper->getUser();
+                $user = $loginHelper->login();
                 $_SESSION['user'] = $user;
                 header("Location:/profile/{$user->getId()}");
             } else {
@@ -41,7 +49,7 @@ class LoginController
             }
         } else {
             $msg = "Please enter data";
-            print($view->render("index", ["error" => $msg]));
+            print($view->render("login", ["error" => $msg]));
 
         }
     }

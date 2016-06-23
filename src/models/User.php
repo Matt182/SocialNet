@@ -2,14 +2,13 @@
 namespace hive2\models;
 
 /**
-* User object
+* User model
 */
 class User
 {
     private $id;
     private $firstName;
     private $email;
-    private $password;
     private $resume;
     private $online;
     private $wasOnline;
@@ -18,12 +17,11 @@ class User
     private $reqFrom;
     private $records;
 
-    public function __construct($id, $firstName, $email, $password, $resume, $online, $wasOnline, $friends, $reqTo, $reqFrom, $records = [])
+    public function __construct($id, $firstName, $email, $resume, $online, $wasOnline, $friends, $reqTo, $reqFrom, $records = [])
     {
         $this->id = $id;
         $this->firstName = $firstName;
         $this->email = $email;
-        $this->password = $password;
         $this->resume = $resume;
         $this->online = $online;
         $this->wasOnline = $wasOnline;

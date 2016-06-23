@@ -15,6 +15,12 @@ class MembersController extends Controller
         parent::__construct($dbProfile, $dbRecords, $view);
     }
 
+    /**
+     * Renders members page
+     *
+     * @param     string $arg (not used here)
+     * @return    void
+     */
     public function index($arg)
     {
         $avatarName = getAvatar($this->user->getId());

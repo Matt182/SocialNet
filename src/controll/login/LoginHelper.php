@@ -22,6 +22,10 @@ class LoginHelper implements LoginInterface
         $this->db = new DBLoginActions();
     }
 
+    /**
+     * Checks if user registered
+     * @return    boolval
+     */
     public function isUserRegistred()
     {
         $row = $this->db->getByEmail($this->email);
@@ -35,20 +39,22 @@ class LoginHelper implements LoginInterface
         }
     }
 
+    /**
+     * Login user into app 
+     * @return    User
+     */
     public function login()
     {
         $this->db->setOnline($this->email);
         $row = $this->db->getByEmail($this->email);
-        $row['records'] = RecordFactory::createRecords($row['records']);
+        if (sizeof($row['records']) > 0) {
+            $row['records'] = RecordFactory::createRecords($row['records'], $this->db);
+        }
         $this->user = new User(
-            $row['id'], $row['firstname'], $row['email'], $row['password'],
+            $row['id'], $row['firstname'], $row['email'],
             $row['resume'], $row['online'], $row['wasonline'], $row['friends'],
             $row['reqto'], $row['reqfrom'], $row['records']
         );
-    }
-
-    public function getUser()
-    {
         return $this->user;
     }
 

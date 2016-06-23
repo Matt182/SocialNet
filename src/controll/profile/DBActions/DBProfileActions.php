@@ -20,6 +20,16 @@ class DBProfileActions extends DB implements DBProfileActionsInterface
         parent::__construct();
     }
 
+    public function getFirstName($id)
+    {
+        $statement = $this->conn->query("select firstname from $this->dbname.members where id ='$id'");
+        if (!$statement) {
+            return;
+        }
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        return $row['firstname'];
+    }
+
     public function getComments($id)
     {
         $statement = $this->conn->query("select * from $this->dbname.comments where record_id ='$id'");
@@ -39,11 +49,11 @@ class DBProfileActions extends DB implements DBProfileActionsInterface
         for ($i=0; $i < sizeof($recordRows); $i++) {
             $recordRows[$i]['comments'] = $this->getComments($recordRows[$i]['id']);
         }
-        $records = RecordFactory::createRecords($recordRows);
+        $records = RecordFactory::createRecords($recordRows, $this);
 
         $user = new User(
             $userRow['id'], $userRow['firstname'], $userRow['email'],
-            $userRow['password'], $userRow['resume'], $userRow['online'],
+            $userRow['resume'], $userRow['online'],
             $userRow['wasonline'], $userRow['friends'], $userRow['reqto'],
             $userRow['reqfrom'], $records
         );
@@ -55,7 +65,8 @@ class DBProfileActions extends DB implements DBProfileActionsInterface
         $statement = $this->conn->query("select * from $this->dbname.members where id='$id'");
         $row = $statement->fetch(PDO::FETCH_ASSOC);
         if ($row) {
-            $user = new User($row['id'], $row['firstname'], $row['email'], $row['password'], $row['resume'], $row['online'], $row['wasonline'], $row['friends'], $row['reqto'], $row['reqfrom']);
+            $user = new User($row['id'], $row['firstname'], $row['email'],$row['resume'],
+            $row['online'], $row['wasonline'], $row['friends'], $row['reqto'], $row['reqfrom']);
             return $user;
         } else {
             return null;

@@ -12,11 +12,17 @@ use hive2\controll\profile\LogoutController;
 use hive2\views\View;
 
 /**
- *
+ * Make inicializtion of objects
  */
 class ControllersStorage
 {
-    static public function get($controllerName)
+    /**
+     * Return appropriate object
+     *
+     * @param     string $name
+     * @return    object
+     */
+    static public function get($name)
     {
         switch ($controllerName) {
             case 'LoginController':

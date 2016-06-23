@@ -9,7 +9,7 @@
 <body>
     <div class="wrapper">
 
-    	<form method="post" action="registrate">
+    	<form method="post" action="/register/registrate">
             <p>
         		<?php if (!empty($error)) : ?>
         			<p class="error"><?= $error?></p>

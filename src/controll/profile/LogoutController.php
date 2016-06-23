@@ -4,7 +4,7 @@ use hive2\controll\profile\DBActions\DBProfileActions;
 use hive2\models\User;
 
 /**
- *
+ * Logout controller
  */
 class LogoutController
 {
@@ -15,6 +15,10 @@ class LogoutController
         $this->db = $db;
     }
 
+    /**
+     * logouts user
+     * @return    void
+     */
     public function index()
     {
         $user = $_SESSION['user'];

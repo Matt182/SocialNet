@@ -19,6 +19,16 @@ class DBLoginActions extends DB implements DBLoginActionsInterface
         parent::__construct();
     }
 
+    public function getFirstName($id)
+    {
+        $statement = $this->conn->query("select first_name from $this->dbname.members where id ='$id'");
+        if (!$statement) {
+            return;
+        }
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        return $row['first_name'];
+    }
+
     /**
      * Get comment of record with $id
      *
@@ -67,6 +77,9 @@ class DBLoginActions extends DB implements DBLoginActionsInterface
             return false;
         }
         $row = $statement->fetch(PDO::FETCH_ASSOC);
+        if (!$row) {
+            return false;
+        }
         $row['records'] = $this->getRecords($row['id']);
         return $row;
     }

@@ -38,16 +38,16 @@ class DBRecordsActions extends DB implements DBRecordsActionsInterface
         return $rows;
     }
 
-    public function addRecord($authorId, $authorName, $ownerId, $content)
+    public function addRecord($authorId, $ownerId, $content)
     {
-        $result = $this->conn->exec("insert into $this->dbname.blog_records (author_id, author_name, owner_id, content) values ('$authorId', '$authorName', '$ownerId', '$content')");
+        $result = $this->conn->exec("insert into $this->dbname.blog_records (author_id, owner_id, content) values ('$authorId', '$ownerId', '$content')");
     }
 
-    public function addComment($recordId, $userId, $userName, $content)
+    public function addComment($recordId, $userId, $content)
     {
         $result = $this->conn->exec(
-            "insert into $this->dbname.comments (record_id, author_id, author_name, content)
-        values ('$recordId', '$userId', '$userName', '$content')"
+            "insert into $this->dbname.comments (record_id, author_id, content)
+        values ('$recordId', '$userId', '$content')"
         );
     }
 }
