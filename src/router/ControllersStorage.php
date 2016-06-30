@@ -22,7 +22,7 @@ class ControllersStorage
      * @param     string $name
      * @return    object
      */
-    static public function get($name)
+    static public function get($controllerName)
     {
         switch ($controllerName) {
             case 'LoginController':

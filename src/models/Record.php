@@ -13,12 +13,11 @@ class Record
     private $content;
     private $likes;
     private $created;
-    private $hasComments;
     private $comments;
 
 
     function __construct($id, $authorId, $authorName, $owner, $content, $likes,
-        $created, $hasComments, $comments
+        $created, $comments
     ) {
 
         $this->id = $id;
@@ -27,8 +26,7 @@ class Record
         $this->owner = $owner;
         $this->content = $content;
         $this->likes = $likes;
-        $this->created = $created;
-        $this->hasComments = $hasComments;
+        $this->created = date('j F o G:i', strtotime($created));
         $this->comments = $comments;
     }
 
@@ -110,18 +108,6 @@ class Record
     public function getCreated()
     {
         return $this->created;
-
-    }
-    /**
-*
-*
-     * Get the value of Comments
-     *
-     * @return boolval
-     */
-    public function hasComments()
-    {
-        return $this->hasComments;
 
     }
 

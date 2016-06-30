@@ -42,6 +42,10 @@ abstract class Controller
         $this->login = true;
     }
 
+    /**
+     * Is user logged in
+     * @return    boolval
+     */
     public function isLogin()
     {
         return $this->login;

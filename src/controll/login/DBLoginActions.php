@@ -110,7 +110,7 @@ class DBLoginActions extends DB implements DBLoginActionsInterface
         $reqTo = serialize([]);
         $reqFrom = serialize([]);
         $result = $this->conn->exec("insert into $this->dbname.members
-            (firstName, password, email, friends, reqTo, reqFrom)
+            (first_name, password, email, friends, req_to, req_from)
             values ('$name', '$password', '$email','$friends','$reqTo','$reqFrom')");
         return $result;
     }

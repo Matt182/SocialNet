@@ -20,12 +20,10 @@ class Comment
         $this->author_id = $author_id;
         $this->author_name = $author_name;
         $this->content = $content;
-        $this->created = $created;
+        $this->created = date('j F o G:i', strtotime($created));
     }
 
     /**
-    *
-    *
     * Get the value of Id
     *
     * @return mixed
@@ -35,9 +33,8 @@ class Comment
         return $this->id;
 
     }
+    
     /**
-    *
-    *
     * Get the value of Record Id
     *
     * @return mixed
@@ -47,9 +44,8 @@ class Comment
         return $this->record_id;
 
     }
+
     /**
-    *
-    *
     * Get the value of Author Id
     *
     * @return mixed
@@ -59,9 +55,8 @@ class Comment
         return $this->author_id;
 
     }
+
     /**
-    *
-    *
     * Get the value of Author Name
     *
     * @return mixed
@@ -71,9 +66,8 @@ class Comment
         return $this->author_name;
 
     }
+
     /**
-    *
-    *
     * Get the value of Content
     *
     * @return mixed
@@ -81,11 +75,9 @@ class Comment
     public function getContent()
     {
         return $this->content;
-
     }
+
     /**
-    *
-    *
     * Get the value of Created
     *
     * @return mixed

@@ -87,7 +87,7 @@ class ProfileController extends Controller
     {
         $avatarName = getAvatar($this->user->getId());
         $reqRows = $this->dbProfile->getReqFrom($id);
-        $reqRows = unserialize($reqRows['reqfrom']);
+        $reqRows = unserialize($reqRows['req_from']);
         $requests = [];
         if(!empty($reqRows)) {
             foreach ($reqRows as $requesterId) {
@@ -208,11 +208,11 @@ class ProfileController extends Controller
     public function getRecords($id)
     {
         $rows = $this->dbRecords->getRecords($id);
-        return $records = RecordFactory::createRecords($rows, $this->dbRecords);
+        return $records = RecordFactory::createRecords($rows, $this->dbProfile);
     }
 
     /**
-     * Save profile edits  
+     * Save profile edits
      * @return    void
      */
     public function saveEdits()

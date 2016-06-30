@@ -40,7 +40,7 @@ class LoginHelper implements LoginInterface
     }
 
     /**
-     * Login user into app 
+     * Login user into app
      * @return    User
      */
     public function login()
@@ -51,9 +51,9 @@ class LoginHelper implements LoginInterface
             $row['records'] = RecordFactory::createRecords($row['records'], $this->db);
         }
         $this->user = new User(
-            $row['id'], $row['firstname'], $row['email'],
-            $row['resume'], $row['online'], $row['wasonline'], $row['friends'],
-            $row['reqto'], $row['reqfrom'], $row['records']
+            $row['id'], $row['first_name'], $row['email'],
+            $row['resume'], $row['online'], $row['was_online'], $row['friends'],
+            $row['req_to'], $row['req_from'], $row['records']
         );
         return $this->user;
     }

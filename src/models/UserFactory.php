@@ -16,10 +16,10 @@ class UserFactory
     public function createUser(array $userData)
     {
         $user = new User(
-            $userData['id'], $userData['firstname'],
+            $userData['id'], $userData['first_name'],
             $userData['email'], $userData['resume'],
-            $userData['online'], $userData['wasonline'], $userData['friends'],
-            $userData['reqto'], $userData['reqfrom']
+            $userData['online'], $userData['was_online'], $userData['friends'],
+            $userData['req_to'], $userData['req_from']
         );
         return $user;
     }
@@ -35,10 +35,10 @@ class UserFactory
         $result = [];
         foreach ($membersData as $member) {
             $result[] = new User(
-                $member['id'], $member['firstname'],
+                $member['id'], $member['first_name'],
                 $member['email'], $member['resume'],
-                $member['online'], $member['wasonline'], $member['friends'],
-                $member['reqto'], $member['reqfrom']
+                $member['online'], $member['was_online'], $member['friends'],
+                $member['req_to'], $member['req_from']
             );
         }
         return $result;

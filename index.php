@@ -23,7 +23,7 @@ require_once 'src/config/Config.php';
  */
 
 $router = new Router();
-
+phpinfo();
 $router->get('login', 'LoginController');
 $router->get('profile', 'ProfileController');
 $router->get('register', 'RegistrationController');

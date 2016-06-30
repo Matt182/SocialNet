@@ -1,7 +1,7 @@
 <div id="sidebar">
   <div id="menu">
     <div id="name">
-      <h2><?=$user->getFirstName()?></h2>
+      <h2><?=$globalUser->getFirstName()?></h2>
     </div>
     <div id="avatar"><img src="<?= $avatarName ?>"></div>
 
